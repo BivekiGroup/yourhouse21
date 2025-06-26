@@ -71,7 +71,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>© 2021 ВашДом. Все права защищены.</p>
+          <p>© 2021-2025 ВашДом. Все права защищены.</p>
           <p className="mt-2 text-sm">
             Разработка сайта <a href="https://biveki.ru/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">BivekiGroup</a>
           </p>

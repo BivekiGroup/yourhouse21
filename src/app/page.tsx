@@ -1,0 +1,227 @@
+"use client";
+import { useState, useEffect } from 'react';
+import Header from '@/components/Header';
+import AboutSection from '@/components/AboutSection';
+import ProjectsSection from '@/components/ProjectsSection';
+import WhyChooseUsSection from '@/components/WhyChooseUsSection';
+import TeamSection from '@/components/TeamSection';
+import ReviewsSection from '@/components/ReviewsSection';
+import ContactSection from '@/components/ContactSection';
+import Footer from '@/components/Footer';
+import Image from 'next/image';
+import HouseCalculatorModal from '@/components/HouseCalculatorModal';
+import CatalogRequestModal from '@/components/CatalogRequestModal';
+import ExcursionModal from '@/components/ExcursionModal';
+import FadeInSection from '@/components/FadeInSection';
+import Preloader from '@/components/Preloader';
+
+export default function Home() {
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
+  const [isCatalogModalOpen, setIsCatalogModalOpen] = useState(false);
+  const [isExcursionModalOpen, setIsExcursionModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hidePreloader, setHidePreloader] = useState(false);
+  
+  // Form states
+  const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      setTimeout(() => setHidePreloader(true), 600); // для плавного исчезновения
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const validatePhone = (value: string) => {
+    const digits = value.replace(/\D/g, '');
+    if (digits.length !== 11) return false;
+    if (!(digits.startsWith('7') || digits.startsWith('8'))) return false;
+    if (/^(7|8)0{10}$/.test(digits)) return false;
+    return true;
+  };
+
+  const validateName = (value: string) => {
+    return /^[А-Яа-яA-Za-zЁё\s\-]{2,}$/.test(value.trim());
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    
+    if (!validateName(name)) {
+      setError('Пожалуйста, укажите корректное имя (только буквы, не менее 2 символов)');
+      setLoading(false);
+      return;
+    }
+    
+    if (!validatePhone(phone)) {
+      setError('Пожалуйста, укажите корректный российский номер телефона');
+      setLoading(false);
+      return;
+    }
+    
+    // Отправляем данные в Telegram
+    try {
+      const res = await fetch('/api/send-telegram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          name, 
+          phone, 
+          material: 'Расчет стоимости',
+          message: 'Запрос расчета стоимости дома' 
+        }),
+      });
+      
+      if (res.ok) {
+        // Если отправка успешна, открываем калькулятор
+        setIsCalculatorOpen(true);
+      } else {
+        setError('Ошибка отправки. Попробуйте позже.');
+      }
+    } catch {
+      setError('Ошибка отправки. Попробуйте позже.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <main className="min-h-screen">
+      {!hidePreloader && (
+        <div className={`fixed inset-0 z-[9999] transition-opacity duration-500 ${isLoading ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+          <Preloader />
+        </div>
+      )}
+      <Header />
+      <HouseCalculatorModal 
+        isOpen={isCalculatorOpen} 
+        onClose={() => setIsCalculatorOpen(false)} 
+        userName={name}
+        userPhone={phone}
+      />
+      <CatalogRequestModal isOpen={isCatalogModalOpen} onClose={() => setIsCatalogModalOpen(false)} />
+      <ExcursionModal isOpen={isExcursionModalOpen} onClose={() => setIsExcursionModalOpen(false)} />
+      
+      {/* Hero Section */}
+      <section className="relative min-h-screen pt-20 pb-16 flex items-center">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/header.jpg"
+            alt="Строительство домов"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/60"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+            {/* Left Content */}
+                         <FadeInSection as="div" className="flex-1 text-white" delay={0.2}>
+              
+                             <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight">
+                 СТРОИТЕЛЬСТВО КАМЕННЫХ<br />
+                 И КАРКАСНЫХ ДОМОВ<br />
+                 С ФИКСАЦИЕЙ ЦЕНЫ
+               </h1>
+               
+               <p className="text-xl lg:text-2xl text-white/90 mb-12">
+                 Построим технологичный дом от 6 млн. руб за 90 дней
+               </p>
+               
+               {/* Stats Section */}
+               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8">
+                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all duration-300 shadow-lg">
+                   <div className="text-3xl lg:text-4xl font-bold text-white mb-2">+100</div>
+                   <div className="text-white/80 text-sm font-medium">Реализованных объектов</div>
+                 </div>
+                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all duration-300 shadow-lg">
+                   <div className="text-3xl lg:text-4xl font-bold text-white mb-2">5</div>
+                   <div className="text-white/80 text-sm font-medium">Лет гарантии</div>
+                 </div>
+                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20 hover:bg-white/15 transition-all duration-300 shadow-lg">
+                   <div className="text-3xl lg:text-4xl font-bold text-white mb-2">90%</div>
+                   <div className="text-white/80 text-sm font-medium">Клиентов рекомендуют нас</div>
+                 </div>
+               </div>
+            </FadeInSection>
+            
+            {/* Right Form */}
+            <FadeInSection as="div" className="w-full lg:w-96" delay={0.4}>
+              <div className="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                  Получите расчет стоимости
+                </h3>
+                
+                <form onSubmit={handleFormSubmit} className="space-y-4">
+                  <input
+                    type="tel"
+                    placeholder="Ваш телефон"
+                    value={phone}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/\D/g, '').slice(0, 11);
+                      setPhone(val);
+                    }}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-900 bg-white"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Ваше имя"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-900 bg-white"
+                  />
+                  
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold flex items-center justify-center group disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {loading ? 'Отправка...' : 'Обсудить проект'}
+                    {!loading && (
+                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    )}
+                  </button>
+                  
+                  {error && (
+                    <div className="bg-red-500 text-white text-center py-3 px-4 rounded-lg text-sm">
+                      {error}
+                    </div>
+                  )}
+                </form>
+                
+                                 <p className="text-xs text-gray-500 mt-4 text-center">
+                   Нажимая кнопку &quot;Обсудить проект&quot;, вы соглашаетесь с{' '}
+                   <a href="#" className="underline hover:text-blue-600">
+                     Политикой конфиденциальности
+                   </a>
+                 </p>
+              </div>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+
+
+      <AboutSection />
+      <ProjectsSection onCatalogClick={() => setIsCatalogModalOpen(true)} />
+      <WhyChooseUsSection />
+      <TeamSection />
+      <ReviewsSection onExcursionClick={() => setIsExcursionModalOpen(true)} />
+      <ContactSection />
+      <Footer />
+    </main>
+  );
+}

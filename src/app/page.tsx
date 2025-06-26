@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
-import TeamSection from '@/components/TeamSection';
+import WorkExamplesSection from '@/components/TeamSection';
 import ReviewsSection from '@/components/ReviewsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
@@ -26,7 +26,6 @@ export default function Home() {
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -51,44 +50,19 @@ export default function Home() {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    setLoading(true);
     
     if (!validateName(name)) {
       setError('Пожалуйста, укажите корректное имя (только буквы, не менее 2 символов)');
-      setLoading(false);
       return;
     }
     
     if (!validatePhone(phone)) {
       setError('Пожалуйста, укажите корректный российский номер телефона');
-      setLoading(false);
       return;
     }
     
-    // Отправляем данные в Telegram
-    try {
-      const res = await fetch('/api/send-telegram', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          name, 
-          phone, 
-          material: 'Расчет стоимости',
-          message: 'Запрос расчета стоимости дома' 
-        }),
-      });
-      
-      if (res.ok) {
-        // Если отправка успешна, открываем калькулятор
-        setIsCalculatorOpen(true);
-      } else {
-        setError('Ошибка отправки. Попробуйте позже.');
-      }
-    } catch {
-      setError('Ошибка отправки. Попробуйте позже.');
-    } finally {
-      setLoading(false);
-    }
+    // Просто открываем калькулятор без отправки
+    setIsCalculatorOpen(true);
   };
 
   return (
@@ -113,7 +87,7 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/header.jpg"
+            src="/images/stanica.png"
             alt="Строительство домов"
             fill
             className="object-cover"
@@ -135,7 +109,7 @@ export default function Home() {
                </h1>
                
                <p className="text-xl lg:text-2xl text-white/90 mb-12">
-                 Построим технологичный дом от 6 млн. руб за 90 дней
+                 Построим технологичный дом за 90 дней
                </p>
                
                {/* Stats Section */}
@@ -187,15 +161,12 @@ export default function Home() {
                     
                     <button
                       type="submit"
-                      disabled={loading}
-                      className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-4 rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 text-lg font-semibold flex items-center justify-center group disabled:opacity-60 disabled:cursor-not-allowed hover:scale-105 shadow-lg"
+                      className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-4 rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 text-lg font-semibold flex items-center justify-center group hover:scale-105 shadow-lg"
                     >
-                      {loading ? 'Отправка...' : 'Обсудить проект'}
-                      {!loading && (
-                        <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      )}
+                      Обсудить проект
+                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
                     </button>
                     
                     {error && (
@@ -226,7 +197,7 @@ export default function Home() {
       <AboutSection />
       <ProjectsSection onCatalogClick={() => setIsCatalogModalOpen(true)} />
       <WhyChooseUsSection />
-      <TeamSection />
+      <WorkExamplesSection />
       <ReviewsSection />
       <ContactSection />
       <Footer />

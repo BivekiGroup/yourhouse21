@@ -5,9 +5,9 @@ import { X, CheckCircle, AlertCircle } from 'lucide-react';
 import Image from 'next/image';
 
 const materials = [
-  { label: 'Кирпич/керамический блок', value: 'brick', img: '/images/keramic.jpg' },
-  { label: 'Газобетон', value: 'aerated', img: '/images/gazobet.png' },
-  { label: 'Керамзитобетон', value: 'claydite', img: '/images/keramiz.jpg' },
+  { label: 'Кирпич/керамический блок', value: 'Кирпич/керамический блок', img: '/images/keramic.jpg' },
+  { label: 'Газобетон', value: 'Газобетон', img: '/images/gazobet.png' },
+  { label: 'Керамзитобетон', value: 'Керамзитобетон', img: '/images/keramiz.jpg' },
 ];
 
 const areas = [
@@ -44,7 +44,7 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
   const [finish, setFinish] = useState('');
   const [finance, setFinance] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
 
@@ -71,6 +71,12 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
   };
 
   const handleSubmitCalculator = async () => {
+    // Защита от двойной отправки
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true);
+    setError('');
+    
     try {
       const res = await fetch('/api/send-telegram', {
         method: 'POST',
@@ -92,6 +98,8 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
       }
     } catch {
       setError('Ошибка отправки. Попробуйте позже.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -102,7 +110,7 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
     setFinish('');
     setFinance('');
     setError('');
-    setSuccess(false);
+    setIsSubmitting(false);
     onClose();
   };
 
@@ -276,22 +284,7 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
             </div>
           )}
 
-          {success && (
-            <div className="flex flex-col items-center justify-center py-8 sm:py-12 animate-fadeIn">
-              <div className="bg-green-500/20 border border-green-500/30 backdrop-blur-sm rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 flex items-center shadow-lg w-full max-w-xl mx-auto">
-                <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 text-green-400 mr-3 sm:mr-4 flex-shrink-0" />
-                <span className="text-green-300 text-base sm:text-lg md:text-xl font-semibold leading-snug text-left">
-                  Благодарим за обращение в нашу компанию!<br className='hidden md:block' /> В течение 15 минут мы свяжемся с вами!
-                </span>
-              </div>
-              <button
-                onClick={closeModal}
-                className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 sm:px-8 py-3 rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300 text-base sm:text-lg font-semibold shadow-lg hover:scale-105"
-              >
-                Закрыть
-              </button>
-            </div>
-          )}
+
 
           {error && (
             <div className="mt-4 sm:mt-6 bg-red-500/20 border border-red-500/30 text-red-300 text-center py-2 sm:py-3 px-3 sm:px-4 rounded-xl flex items-center justify-center min-h-[40px] sm:min-h-[48px] text-sm sm:text-base backdrop-blur-sm">
@@ -300,7 +293,7 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
             </div>
           )}
 
-          {!success && step < 5 && (
+          {step < 5 && (
             <div className="flex justify-between mt-6 sm:mt-8">
               {step > 1 && (
                 <button
@@ -321,9 +314,10 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
               {step === 4 && (
                 <button
                   onClick={handleNext}
-                  className="ml-auto bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 sm:px-8 py-2 rounded-full hover:from-blue-600 hover:to-purple-600 hover:scale-105 transition-all duration-300 text-sm sm:text-base font-medium shadow-lg"
+                  disabled={isSubmitting}
+                  className="ml-auto bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 sm:px-8 py-2 rounded-full hover:from-blue-600 hover:to-purple-600 hover:scale-105 transition-all duration-300 text-sm sm:text-base font-medium shadow-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  Рассчитать стоимость
+                  {isSubmitting ? 'Отправка...' : 'Рассчитать стоимость'}
                 </button>
               )}
             </div>

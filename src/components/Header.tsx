@@ -24,26 +24,25 @@ const Header = () => {
                 </svg>
               </div>
               <div className="text-white">
-                <div className="text-xl font-bold">SD</div>
-                <div className="text-sm font-semibold -mt-1">STROY</div>
+                <div className="text-xl font-bold">Ваш Дом</div>
               </div>
             </Link>
             
             {/* Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
-              <Link href="#services" className="text-white hover:text-blue-400 transition-colors text-sm font-medium py-1">
+              <Link href="#services" className="text-white hover:text-blue-400 transition-colors text-lg font-medium py-2 px-3 rounded-lg hover:bg-white/10">
                 Услуги
               </Link>
-              <Link href="#about" className="text-white hover:text-blue-400 transition-colors text-sm font-medium py-1">
+              <Link href="#about" className="text-white hover:text-blue-400 transition-colors text-lg font-medium py-2 px-3 rounded-lg hover:bg-white/10">
                 О нас
               </Link>
-              <Link href="#projects" className="text-white hover:text-blue-400 transition-colors text-sm font-medium py-1">
+              <Link href="#projects" className="text-white hover:text-blue-400 transition-colors text-lg font-medium py-2 px-3 rounded-lg hover:bg-white/10">
                 Каталог домов
               </Link>
-              <Link href="#reviews" className="text-white hover:text-blue-400 transition-colors text-sm font-medium py-1">
+              <Link href="#reviews" className="text-white hover:text-blue-400 transition-colors text-lg font-medium py-2 px-3 rounded-lg hover:bg-white/10">
                 Отзывы
               </Link>
-              <Link href="#contacts" className="text-white hover:text-blue-400 transition-colors text-sm font-medium py-1">
+              <Link href="#contacts" className="text-white hover:text-blue-400 transition-colors text-lg font-medium py-2 px-3 rounded-lg hover:bg-white/10">
                 Контакты
               </Link>
             </nav>

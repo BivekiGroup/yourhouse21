@@ -58,7 +58,7 @@ const AboutSection = () => {
             <div className="relative h-[500px] w-full rounded-2xl overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent z-10"></div>
               <Image
-                src="/images/company.jpg"
+                src="/images/company2.jpg"
                 alt="О нашей компании"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"

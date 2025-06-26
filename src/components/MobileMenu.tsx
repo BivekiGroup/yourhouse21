@@ -56,6 +56,13 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             Услуги
           </Link>
           <Link 
+            href="#about" 
+            className="text-xl text-white hover:text-blue-400 transition-colors py-2"
+            onClick={onClose}
+          >
+            О нас
+          </Link>
+          <Link 
             href="#projects" 
             className="text-xl text-white hover:text-blue-400 transition-colors py-2"
             onClick={onClose}
@@ -63,18 +70,11 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             Каталог домов
           </Link>
           <Link 
-            href="#mortgage" 
+            href="#reviews" 
             className="text-xl text-white hover:text-blue-400 transition-colors py-2"
             onClick={onClose}
           >
-            Ипотека
-          </Link>
-          <Link 
-            href="#about" 
-            className="text-xl text-white hover:text-blue-400 transition-colors py-2"
-            onClick={onClose}
-          >
-            О нас
+            Отзывы
           </Link>
           <Link 
             href="#contacts" 

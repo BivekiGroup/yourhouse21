@@ -34,14 +34,14 @@ const Header = () => {
               <Link href="#services" className="text-white hover:text-blue-400 transition-colors text-sm font-medium py-1">
                 Услуги
               </Link>
+              <Link href="#about" className="text-white hover:text-blue-400 transition-colors text-sm font-medium py-1">
+                О нас
+              </Link>
               <Link href="#projects" className="text-white hover:text-blue-400 transition-colors text-sm font-medium py-1">
                 Каталог домов
               </Link>
-              <Link href="#mortgage" className="text-white hover:text-blue-400 transition-colors text-sm font-medium py-1">
-                Ипотека
-              </Link>
-              <Link href="#about" className="text-white hover:text-blue-400 transition-colors text-sm font-medium py-1">
-                О нас
+              <Link href="#reviews" className="text-white hover:text-blue-400 transition-colors text-sm font-medium py-1">
+                Отзывы
               </Link>
               <Link href="#contacts" className="text-white hover:text-blue-400 transition-colors text-sm font-medium py-1">
                 Контакты

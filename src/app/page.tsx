@@ -157,56 +157,64 @@ export default function Home() {
             
             {/* Right Form */}
             <FadeInSection as="div" className="w-full lg:w-96" delay={0.4}>
-              <div className="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-2xl">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                  Получите расчет стоимости
-                </h3>
+              <div className="group relative p-8 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-500 shadow-2xl">
+                {/* Фон */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
-                <form onSubmit={handleFormSubmit} className="space-y-4">
-                  <input
-                    type="tel"
-                    placeholder="Ваш телефон"
-                    value={phone}
-                    onChange={(e) => {
-                      const val = e.target.value.replace(/\D/g, '').slice(0, 11);
-                      setPhone(val);
-                    }}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-900 bg-white"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Ваше имя"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-900 bg-white"
-                  />
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-6 text-center">
+                    Получите расчет стоимости
+                  </h3>
                   
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold flex items-center justify-center group disabled:opacity-60 disabled:cursor-not-allowed"
-                  >
-                    {loading ? 'Отправка...' : 'Обсудить проект'}
-                    {!loading && (
-                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
+                  <form onSubmit={handleFormSubmit} className="space-y-6">
+                    <input
+                      type="tel"
+                      placeholder="Ваш телефон"
+                      value={phone}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, '').slice(0, 11);
+                        setPhone(val);
+                      }}
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all duration-300"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Ваше имя"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all duration-300"
+                    />
+                    
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-4 rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 text-lg font-semibold flex items-center justify-center group disabled:opacity-60 disabled:cursor-not-allowed hover:scale-105 shadow-lg"
+                    >
+                      {loading ? 'Отправка...' : 'Обсудить проект'}
+                      {!loading && (
+                        <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      )}
+                    </button>
+                    
+                    {error && (
+                      <div className="bg-red-500/20 border border-red-500/30 text-red-300 text-center py-3 px-4 rounded-xl text-sm backdrop-blur-sm">
+                        {error}
+                      </div>
                     )}
-                  </button>
+                  </form>
                   
-                  {error && (
-                    <div className="bg-red-500 text-white text-center py-3 px-4 rounded-lg text-sm">
-                      {error}
-                    </div>
-                  )}
-                </form>
-                
-                                 <p className="text-xs text-gray-500 mt-4 text-center">
-                   Нажимая кнопку &quot;Обсудить проект&quot;, вы соглашаетесь с{' '}
-                   <a href="#" className="underline hover:text-blue-600">
-                     Политикой конфиденциальности
-                   </a>
-                 </p>
+                  <p className="text-xs text-gray-400 mt-4 text-center">
+                    Нажимая кнопку &quot;Обсудить проект&quot;, вы соглашаетесь с{' '}
+                    <a href="#" className="underline hover:text-blue-400 transition-colors duration-300">
+                      Политикой конфиденциальности
+                    </a>
+                  </p>
+                </div>
+
+                {/* Декоративный элемент */}
+                <div className="absolute top-4 right-4 w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             </FadeInSection>
           </div>
@@ -219,7 +227,7 @@ export default function Home() {
       <ProjectsSection onCatalogClick={() => setIsCatalogModalOpen(true)} />
       <WhyChooseUsSection />
       <TeamSection />
-      <ReviewsSection onExcursionClick={() => setIsExcursionModalOpen(true)} />
+      <ReviewsSection />
       <ContactSection />
       <Footer />
     </main>

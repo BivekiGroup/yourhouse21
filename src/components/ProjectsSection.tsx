@@ -15,8 +15,8 @@ const projects = [
     description: 'Дом 11х9м, общая площадь 101,4 кв.м., 3 спальни, 1 санузел',
     images: [
       { type: 'facade', src: '/images/garmony.png', alt: 'Фасад дома Гармония' },
-      { type: 'plan', src: '/projects/garmony-plan1.jpg', alt: 'Планировка 1 этажа' },
-      { type: 'plan', src: '/projects/garmony-plan2.jpg', alt: 'Планировка 2 этажа' }
+      { type: 'plan', src: '/images/2.jpg', alt: 'Планировка 1 этажа' },
+      { type: 'plan', src: '/images/3.jpg', alt: 'Планировка 2 этажа' }
     ],
     file: '/projects/garmony.pdf',
   },
@@ -26,8 +26,8 @@ const projects = [
     description: 'Дом 14х13 м, общая площадь 142,8 кв.м, 3 спальни, 2 санузла',
     images: [
       { type: 'facade', src: '/images/gorizont.png', alt: 'Фасад дома Горизонт' },
-      { type: 'plan', src: '/projects/gorizont-plan1.jpg', alt: 'Планировка 1 этажа' },
-      { type: 'plan', src: '/projects/gorizont-plan2.jpg', alt: 'Планировка 2 этажа' }
+      { type: 'plan', src: '/images/22.jpg', alt: 'Планировка 1 этажа' },
+      { type: 'plan', src: '/images/33.jpg', alt: 'Планировка 2 этажа' }
     ],
     file: '/projects/gorizont.pdf',
   },
@@ -37,8 +37,7 @@ const projects = [
     description: 'Дом 14,2х10,5 м, общая площадь 131,4 кв.м., 3 спальни, 2 санузла',
     images: [
       { type: 'facade', src: '/images/filimonov.png', alt: 'Фасад дома Филимонов' },
-      { type: 'plan', src: '/projects/filimonov-plan1.jpg', alt: 'Планировка 1 этажа' },
-      { type: 'plan', src: '/projects/filimonov-plan2.jpg', alt: 'Планировка 2 этажа' }
+      { type: 'plan', src: '/images/333.jpg', alt: 'Планировка дома' }
     ],
     file: '/projects/filimonov.pdf',
   },
@@ -48,8 +47,7 @@ const projects = [
     description: 'Дом 12х8м, общая площадь 89,6 кв.м., 2 спальни, 1 санузел',
     images: [
       { type: 'facade', src: '/images/moronchov.png', alt: 'Фасад дома Моронцов' },
-      { type: 'plan', src: '/projects/moronchov-plan1.jpg', alt: 'Планировка 1 этажа' },
-      { type: 'plan', src: '/projects/moronchov-plan2.jpg', alt: 'Планировка 2 этажа' }
+      { type: 'plan', src: '/images/3333.jpg', alt: 'Планировка дома' }
     ],
     file: '/projects/moronchov.pdf',
   },
@@ -59,8 +57,8 @@ const projects = [
     description: 'Дом 15х12м, общая площадь 156,8 кв.м., 4 спальни, 2 санузла',
     images: [
       { type: 'facade', src: '/images/rancho.png', alt: 'Фасад дома Ранчо' },
-      { type: 'plan', src: '/projects/rancho-plan1.jpg', alt: 'Планировка 1 этажа' },
-      { type: 'plan', src: '/projects/rancho-plan2.jpg', alt: 'Планировка 2 этажа' }
+      { type: 'plan', src: '/images/111.jpg', alt: 'Планировка 1 этажа' },
+      { type: 'plan', src: '/images/222.jpg', alt: 'Планировка 2 этажа' }
     ],
     file: '/projects/rancho.pdf',
   },
@@ -70,8 +68,7 @@ const projects = [
     description: 'Дом 13х9м, общая площадь 118,2 кв.м., 3 спальни, 1 санузел',
     images: [
       { type: 'facade', src: '/images/zori.png', alt: 'Фасад дома Тихие Зори' },
-      { type: 'plan', src: '/projects/zori-plan1.jpg', alt: 'Планировка 1 этажа' },
-      { type: 'plan', src: '/projects/zori-plan2.jpg', alt: 'Планировка 2 этажа' }
+      { type: 'plan', src: '/images/122.jpg', alt: 'Планировка дома' }
     ],
     file: '/projects/zori.pdf',
   },
@@ -81,8 +78,7 @@ const projects = [
     description: 'Дом 16х10м, общая площадь 168,4 кв.м., 4 спальни, 3 санузла',
     images: [
       { type: 'facade', src: '/images/gnezdo.png', alt: 'Фасад дома Уютное гнездышко' },
-      { type: 'plan', src: '/projects/gnezdo-plan1.jpg', alt: 'Планировка 1 этажа' },
-      { type: 'plan', src: '/projects/gnezdo-plan2.jpg', alt: 'Планировка 2 этажа' }
+      { type: 'plan', src: '/images/3333.jpg', alt: 'Планировка дома' }
     ],
     file: '/projects/gnezdo.pdf',
   },
@@ -92,8 +88,8 @@ const projects = [
     description: 'Дом 10х8м, общая площадь 78,6 кв.м., 2 спальни, 1 санузел',
     images: [
       { type: 'facade', src: '/images/aura.png', alt: 'Фасад дома Аура' },
-      { type: 'plan', src: '/projects/aura-plan1.jpg', alt: 'Планировка 1 этажа' },
-      { type: 'plan', src: '/projects/aura-plan2.jpg', alt: 'Планировка 2 этажа' }
+      { type: 'plan', src: '/images/444.jpg', alt: 'Планировка 1 этажа' },
+      { type: 'plan', src: '/images/555.jpg', alt: 'Планировка 2 этажа' }
     ],
     file: '/projects/aura.pdf',
   },
@@ -103,8 +99,7 @@ const projects = [
     description: 'Дом 18х12м, общая площадь 198,4 кв.м., 5 спален, 3 санузла',
     images: [
       { type: 'facade', src: '/images/nade.png', alt: 'Фасад дома Надежда' },
-      { type: 'plan', src: '/projects/nade-plan1.jpg', alt: 'Планировка 1 этажа' },
-      { type: 'plan', src: '/projects/nade-plan2.jpg', alt: 'Планировка 2 этажа' }
+      { type: 'plan', src: '/images/666.jpg', alt: 'Планировка дома' }
     ],
     file: '/projects/nade.pdf',
   },
@@ -135,7 +130,7 @@ const ProjectImageSlider = ({ project }: { project: typeof projects[0] }) => {
         src={project.images[currentImageIndex].src}
         alt={project.images[currentImageIndex].alt}
         fill
-        className="object-cover transition-transform duration-700 group-hover:scale-110"
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
       />
 
       {/* Навигация по изображениям */}
@@ -246,7 +241,7 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500 rounded-full blur-3xl opacity-20"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 relative z-10">
         {/* Заголовок секции */}
         <FadeInSection as="div" className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-4">
@@ -261,7 +256,7 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
           <button
             onClick={handlePrevious}
             disabled={currentIndex === 0}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 rounded-full p-3 hover:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 rounded-full p-3 hover:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
             aria-label="Предыдущий проект"
           >
             <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -273,7 +268,7 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
           <button
             onClick={handleNext}
             disabled={currentIndex >= totalSlides - 1}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 rounded-full p-3 hover:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 rounded-full p-3 hover:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
             aria-label="Следующий проект"
           >
             <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -282,7 +277,7 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
           </button>
 
           {/* Контейнер проектов */}
-          <div className="overflow-hidden">
+          <div className="px-8 py-4">
             <div 
               className="grid transition-transform duration-300 ease-in-out gap-8"
               style={{
@@ -293,7 +288,7 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
                 <FadeInSection 
                   key={`${project.id}-${currentIndex}`} 
                   as="div" 
-                  className="group relative p-6 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:-translate-y-2"
+                  className="group relative p-6 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1"
                   delay={0.1 * index}
                 >
                   {/* Фон */}
@@ -354,7 +349,7 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
         <FadeInSection as="div" delay={0.6} className="text-center mt-16">
           <button
             onClick={onCatalogClick}
-            className="inline-flex items-center space-x-2 px-8 py-4 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-white/20 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer group"
+            className="inline-flex items-center space-x-2 px-8 py-4 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-white/20 backdrop-blur-sm hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
           >
             <span className="text-white font-medium text-lg">Получить полный каталог проектов</span>
             <div className="w-2 h-2 bg-green-400 rounded-full group-hover:scale-150 transition-transform duration-300"></div>

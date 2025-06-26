@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">ВашДом</h3>
+            <h3 className="text-xl font-bold mb-4">Ваш Дом</h3>
             <p className="text-gray-400">
               Современное строительство домов и коттеджей под ключ. Индивидуальные проекты, качественные материалы, профессиональная команда.
             </p>
@@ -49,8 +49,8 @@ const Footer = () => {
               <li>+7 (900) 123-45-67</li>
               <li>info@vashdom.ru</li>
               <li>
-                г. Москва,<br />
-                ул. Новая, 10
+                г. Чебоксары,<br />
+                ул. Калинина, 107
               </li>
             </ul>
           </div>
@@ -66,20 +66,12 @@ const Footer = () => {
               >
                 Telegram
               </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WhatsApp
-              </a>
             </div>
           </div>
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>© 2025 ВашДом. Все права защищены.</p>
+          <p>© 2021 ВашДом. Все права защищены.</p>
           <p className="mt-2 text-sm">
             Разработка сайта <a href="https://biveki.ru/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">BivekiGroup</a>
           </p>

@@ -66,10 +66,10 @@ const CatalogRequestModal = ({ isOpen, onClose }: CatalogRequestModalProps) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm">
-      <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl w-full max-w-lg mx-4 animate-fadeIn border border-white/20 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+      <div className="relative bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl w-full max-w-lg mx-4 animate-fadeIn border border-gray-200 overflow-hidden">
         {/* Декоративные фоновые элементы */}
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-30">
           <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-500 rounded-full blur-2xl"></div>
           <div className="absolute bottom-1/4 right-1/4 w-28 h-28 bg-purple-500 rounded-full blur-2xl"></div>
           <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-cyan-500 rounded-full blur-2xl opacity-20"></div>
@@ -77,13 +77,13 @@ const CatalogRequestModal = ({ isOpen, onClose }: CatalogRequestModalProps) => {
 
         <button
           onClick={closeModal}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white z-20 p-2 rounded-full hover:bg-white/10 transition-all duration-300"
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 z-20 p-2 rounded-full hover:bg-gray-100 transition-all duration-300"
           aria-label="Закрыть"
         >
           <X className="w-6 h-6" />
         </button>
 
-        <div className="relative z-10 p-8 md:p-10 flex flex-col items-center">
+        <div className="relative z-10 p-8">
           <div className="w-full flex justify-center mb-6">
             <div className="relative group">
               <Image 
@@ -99,10 +99,10 @@ const CatalogRequestModal = ({ isOpen, onClose }: CatalogRequestModalProps) => {
             </div>
           </div>
 
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 bg-gradient-to-r from-gray-800 via-blue-600 to-gray-800 bg-clip-text text-transparent">
             Укажите контакты
           </h2>
-          <p className="text-gray-300 text-center mb-8">И мы отправим каталог проектов на WhatsApp</p>
+          <p className="text-gray-600 text-center mb-8">И мы отправим каталог проектов на WhatsApp</p>
 
           {!success ? (
             <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
@@ -114,14 +114,14 @@ const CatalogRequestModal = ({ isOpen, onClose }: CatalogRequestModalProps) => {
                   const val = e.target.value.replace(/\D/g, '').slice(0, 11);
                   setPhone(val);
                 }}
-                className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-lg text-white placeholder-gray-400 hover:bg-white/15 transition-all duration-300"
+                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-lg text-gray-800 placeholder-gray-500 hover:border-gray-300 transition-all duration-300"
               />
               <input
                 type="text"
                 placeholder="Имя"
                 value={name}
                 onChange={e => setName(e.target.value)}
-                className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-lg text-white placeholder-gray-400 hover:bg-white/15 transition-all duration-300"
+                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-lg text-gray-800 placeholder-gray-500 hover:border-gray-300 transition-all duration-300"
               />
               <button
                 type="submit"
@@ -130,8 +130,9 @@ const CatalogRequestModal = ({ isOpen, onClose }: CatalogRequestModalProps) => {
               >
                 {loading ? 'Отправка...' : 'Хочу проект'}
               </button>
+              
               {error && (
-                <div className="bg-gradient-to-r from-red-500/20 to-red-600/20 backdrop-blur-sm border border-red-500/30 text-red-300 text-center py-3 px-4 rounded-lg flex items-center justify-center min-h-[48px] md:min-h-[40px] md:text-base text-sm whitespace-pre-line mt-2">
+                <div className="bg-red-100 border border-red-300 text-red-700 text-center py-3 px-4 rounded-lg flex items-center justify-center min-h-[48px] md:min-h-[40px] md:text-base text-sm whitespace-pre-line mt-2">
                   <AlertCircle className="w-5 h-5 mr-2 shrink-0" />
                   <span className="block w-full break-words">{error}</span>
                 </div>
@@ -139,9 +140,9 @@ const CatalogRequestModal = ({ isOpen, onClose }: CatalogRequestModalProps) => {
             </form>
           ) : (
             <div className="w-full flex flex-col items-center animate-fadeIn">
-              <div className="bg-gradient-to-r from-green-500/20 to-green-600/20 backdrop-blur-sm border border-green-500/30 rounded-2xl p-6 mb-8 flex items-center shadow-lg w-full">
-                <CheckCircle className="w-10 h-10 text-green-400 mr-4 flex-shrink-0" />
-                <span className="text-green-300 text-lg md:text-xl font-semibold leading-snug text-left">
+              <div className="bg-green-100 border border-green-300 rounded-2xl p-6 mb-8 flex items-center shadow-lg w-full">
+                <CheckCircle className="w-10 h-10 text-green-600 mr-4 flex-shrink-0" />
+                <span className="text-green-700 text-lg md:text-xl font-semibold leading-snug text-left">
                   Спасибо! Данные успешно отправлены.
                 </span>
               </div>

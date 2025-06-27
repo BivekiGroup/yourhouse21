@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import FadeInSection from './FadeInSection';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 type ProjectsSectionProps = {
   onCatalogClick?: () => void;
@@ -121,16 +122,28 @@ const ProjectImageSlider = ({ project }: { project: typeof projects[0] }) => {
     );
   };
 
+  const currentImage = project.images[currentImageIndex];
+  const isFloorPlan = currentImage.type === 'floorplan';
+  
   return (
     <div className="relative h-80 rounded-xl overflow-hidden group">
+      {/* Фон для планировок */}
+      {isFloorPlan && (
+        <div className="absolute inset-0 bg-white z-0"></div>
+      )}
+      
       <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent z-10"></div>
       
       {/* Текущее изображение */}
       <Image
-        src={project.images[currentImageIndex].src}
-        alt={project.images[currentImageIndex].alt}
+        src={currentImage.src}
+        alt={currentImage.alt}
         fill
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
+        className={`transition-transform duration-500 group-hover:scale-105 ${
+          isFloorPlan 
+            ? 'object-contain p-4' 
+            : 'object-cover'
+        }`}
       />
 
       {/* Навигация по изображениям */}
@@ -175,7 +188,7 @@ const ProjectImageSlider = ({ project }: { project: typeof projects[0] }) => {
           {/* Тип изображения */}
           <div className="absolute top-3 left-3 z-20">
             <span className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs font-medium">
-              {project.images[currentImageIndex].type === 'facade' ? '🏠 Фасад' : '📐 Планировка'}
+              {currentImage.type === 'facade' ? '🏠 Фасад' : '📐 Планировка'}
             </span>
           </div>
         </>
@@ -233,9 +246,9 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
   const visibleProjects = projects.slice(startIndex, startIndex + itemsPerView);
 
   return (
-    <section id="projects" className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
+    <section id="projects" className="relative py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
       {/* Статичный фон */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500 rounded-full blur-3xl opacity-20"></div>
@@ -244,7 +257,7 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
       <div className="container mx-auto px-6 relative z-10">
         {/* Заголовок секции */}
         <FadeInSection as="div" className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-gray-800 bg-clip-text text-transparent mb-4">
             Каталог проектов
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
@@ -252,28 +265,21 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
         
         {/* Карусель */}
         <div className="relative">
-          {/* Стрелка влево */}
+          {/* Навигационные кнопки */}
           <button
             onClick={handlePrevious}
-            disabled={currentIndex === 0}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 rounded-full p-3 hover:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
-            aria-label="Предыдущий проект"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200 hover:bg-white hover:shadow-lg transition-all duration-300 flex items-center justify-center group"
+            aria-label="Предыдущий слайд"
           >
-            <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
+            <ChevronLeft className="w-6 h-6 text-gray-800 group-hover:text-blue-600" />
           </button>
-
-          {/* Стрелка вправо */}
+          
           <button
             onClick={handleNext}
-            disabled={currentIndex >= totalSlides - 1}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 rounded-full p-3 hover:bg-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
-            aria-label="Следующий проект"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200 hover:bg-white hover:shadow-lg transition-all duration-300 flex items-center justify-center group"
+            aria-label="Следующий слайд"
           >
-            <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+            <ChevronRight className="w-6 h-6 text-gray-800 group-hover:text-blue-600" />
           </button>
 
           {/* Контейнер проектов */}
@@ -288,11 +294,11 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
                 <FadeInSection 
                   key={`${project.id}-${currentIndex}`} 
                   as="div" 
-                  className="group relative p-6 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1"
+                  className="group relative p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1"
                   delay={0.1 * index}
                 >
                   {/* Фон */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
                   <div className="relative z-10">
                     {/* Слайдер изображений */}
@@ -300,15 +306,15 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
                     
                     {/* Информация о проекте */}
                     <div className="mt-6">
-                      <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-300 transition-all duration-300">
+                      <h3 className="text-2xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-all duration-300">
                         {project.title}
                       </h3>
-                      <p className="text-gray-300 leading-relaxed mb-4">
+                      <p className="text-gray-600 leading-relaxed mb-4">
                         {project.description}
                       </p>
                       
                       {/* Дополнительная информация */}
-                      <div className="flex items-center justify-between text-sm text-gray-400">
+                      <div className="flex items-center justify-between text-sm text-gray-500">
                         <span className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                           <span>Доступен для строительства</span>
@@ -330,7 +336,7 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
         </div>
 
         {/* Индикаторы */}
-        <div className="flex justify-center mt-12 space-x-3">
+        <div className="flex justify-center mt-8 space-x-2">
           {Array.from({ length: totalSlides }, (_, index) => (
             <button
               key={index}
@@ -338,7 +344,7 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex 
                   ? 'bg-gradient-to-r from-blue-500 to-purple-500 scale-125' 
-                  : 'bg-white/30 hover:bg-white/50'
+                  : 'bg-gray-300 hover:bg-gray-400'
               }`}
               aria-label={`Перейти к слайду ${index + 1}`}
             />
@@ -349,9 +355,9 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
         <FadeInSection as="div" delay={0.6} className="text-center mt-16">
           <button
             onClick={onCatalogClick}
-            className="inline-flex items-center space-x-2 px-8 py-4 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-white/20 backdrop-blur-sm hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
+            className="inline-flex items-center space-x-2 px-8 py-4 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-300 backdrop-blur-sm hover:scale-[1.02] transition-all duration-300 cursor-pointer group hover:from-blue-500/30 hover:to-purple-500/30"
           >
-            <span className="text-white font-medium text-lg">Получить полный каталог проектов</span>
+            <span className="text-gray-800 font-medium text-lg">Получить полный каталог проектов</span>
             <div className="w-2 h-2 bg-green-400 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
           </button>
         </FadeInSection>

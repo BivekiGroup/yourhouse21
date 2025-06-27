@@ -10,13 +10,16 @@ interface ContactModalProps {
 const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
   const [formData, setFormData] = useState({
     phone: '',
-    name: ''
+    name: '',
+    message: ''
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({
     phone: '',
     name: ''
   });
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
 
   const validatePhone = (phone: string) => {
     const phoneRegex = /^[78]\d{10}$/;
@@ -91,15 +94,18 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
           type: 'contact',
           name: formData.name,
           phone: formData.phone,
+          message: formData.message
         }),
       });
 
       if (response.ok) {
-        setFormData({ phone: '', name: '' });
+        setFormData({ phone: '', name: '', message: '' });
+        setSuccess('Сообщение успешно отправлено!');
         onClose();
       }
     } catch (error) {
       console.error('Ошибка отправки:', error);
+      setError('Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже.');
     } finally {
       setIsLoading(false);
     }
@@ -108,83 +114,98 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="relative w-full max-w-md">
         {/* Фоновые декоративные элементы */}
         <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-full blur-xl"></div>
         <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br from-purple-500/30 to-blue-500/30 rounded-full blur-xl"></div>
         
         {/* Основной контейнер */}
-        <div className="relative bg-gradient-to-br from-gray-900/95 to-gray-800/95 backdrop-blur-md border border-white/20 rounded-2xl p-8 shadow-2xl">
+        <div className="relative bg-white/95 backdrop-blur-md border border-gray-200 rounded-2xl p-8 shadow-2xl">
           {/* Кнопка закрытия */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200 text-white"
+            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200 text-gray-600"
           >
             ✕
           </button>
 
           {/* Заголовок */}
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-2">
+            <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-gray-800 bg-clip-text text-transparent mb-2">
               Укажите свои данные
             </h2>
-            <p className="text-gray-300 text-sm">
+            <p className="text-gray-600 text-sm">
               И наш менеджер свяжется с Вами в ближайшее время
             </p>
             <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full mt-4"></div>
           </div>
 
           {/* Форма */}
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Поле телефона */}
-            <div>
-              <input
-                type="tel"
-                value={formData.phone}
-                onChange={handlePhoneChange}
-                placeholder="+7 (999) 999-99-99"
-                className="w-full px-4 py-4 bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:bg-white/10 transition-all duration-300"
-              />
-              {errors.phone && (
-                <p className="text-red-400 text-sm mt-2 ml-1">{errors.phone}</p>
-              )}
-            </div>
-
-            {/* Поле имени */}
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <input
                 type="text"
+                name="name"
+                placeholder="Ваше имя"
                 value={formData.name}
-                onChange={(e) => handleInputChange('name', e.target.value)}
-                placeholder="Имя"
-                className="w-full px-4 py-4 bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:bg-white/10 transition-all duration-300"
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 text-gray-800 placeholder-gray-500"
+                required
               />
-              {errors.name && (
-                <p className="text-red-400 text-sm mt-2 ml-1">{errors.name}</p>
-              )}
             </div>
-
-            {/* Кнопка отправки */}
+            
+            <div>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Ваш телефон"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 text-gray-800 placeholder-gray-500"
+                required
+              />
+            </div>
+            
+            <div>
+              <textarea
+                name="message"
+                placeholder="Ваше сообщение"
+                rows={4}
+                value={formData.message}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 text-gray-800 placeholder-gray-500 resize-none"
+                required
+              />
+            </div>
+            
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-600 disabled:to-gray-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed shadow-lg"
+              className="w-full py-3 px-6 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold hover:from-blue-600 hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
             >
-              {isLoading ? (
-                <div className="flex items-center justify-center space-x-2">
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                  <span>Отправка...</span>
-                </div>
-              ) : (
-                'Заказать звонок'
-              )}
+              {isLoading ? 'Отправка...' : 'Отправить сообщение'}
             </button>
+            
+            {success && (
+              <div className="bg-green-100 border border-green-300 text-green-700 text-center py-3 px-4 rounded-xl text-sm">
+                {success}
+              </div>
+            )}
+            
+            {error && (
+              <div className="bg-red-100 border border-red-300 text-red-700 text-center py-3 px-4 rounded-xl text-sm">
+                {error}
+              </div>
+            )}
           </form>
-
-          {/* Декоративные элементы */}
-          <div className="absolute top-2 right-12 w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-50"></div>
-          <div className="absolute bottom-2 left-8 w-1 h-1 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full opacity-60"></div>
+          
+          <p className="text-xs text-gray-500 mt-4 text-center">
+            Нажимая кнопку "Отправить сообщение", вы соглашаетесь с{' '}
+            <a href="#" className="underline hover:text-blue-600 transition-colors duration-300">
+              Политикой конфиденциальности
+            </a>
+          </p>
         </div>
       </div>
     </div>

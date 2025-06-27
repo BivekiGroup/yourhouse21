@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu } from 'lucide-react';
+import { Menu, Phone } from 'lucide-react';
 import { useState } from 'react';
 import CallbackModal from './CallbackModal';
 import MobileMenu from './MobileMenu';
@@ -60,9 +60,10 @@ const Header = () => {
               </div>
               <button 
                 onClick={() => setIsModalOpen(true)}
-                className="bg-white text-gray-900 px-6 py-2.5 rounded-lg hover:bg-gray-100 transition-colors hover:shadow-lg text-sm font-semibold flex-shrink-0"
+                className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-white/20 backdrop-blur-sm text-white px-8 py-3.5 rounded-lg hover:from-blue-500/30 hover:to-purple-500/30 hover:border-white/40 transition-all duration-300 hover:scale-105 text-base font-semibold flex-shrink-0 flex items-center space-x-2 group"
               >
-                Оставить заявку
+                <Phone className="w-5 h-5 group-hover:animate-bounce" />
+                <span>Оставить заявку</span>
               </button>
             </div>
 

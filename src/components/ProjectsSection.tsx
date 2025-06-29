@@ -13,7 +13,7 @@ const projects = [
   {
     id: 1,
     title: 'Гармония',
-    description: 'Дом 11х9м, общая площадь 101,4 кв.м., 3 спальни, 1 санузел',
+    description: 'Общая площадь 200 кв.м.',
     images: [
       { type: 'facade', src: '/images/garmony.png', alt: 'Фасад дома Гармония' },
       { type: 'plan', src: '/images/2.jpg', alt: 'Планировка 1 этажа' },
@@ -24,7 +24,7 @@ const projects = [
   {
     id: 2,
     title: 'Горизонт',
-    description: 'Дом 14х13 м, общая площадь 142,8 кв.м, 3 спальни, 2 санузла',
+    description: 'Общая площадь 360 кв.м.',
     images: [
       { type: 'facade', src: '/images/gorizont.png', alt: 'Фасад дома Горизонт' },
       { type: 'plan', src: '/images/22.jpg', alt: 'Планировка 1 этажа' },
@@ -34,20 +34,20 @@ const projects = [
   },
   {
     id: 3,
-    title: 'Филимонов',
-    description: 'Дом 14,2х10,5 м, общая площадь 131,4 кв.м., 3 спальни, 2 санузла',
+    title: 'Европейский квартал',
+    description: 'Общая площадь 120 кв.м.',
     images: [
-      { type: 'facade', src: '/images/filimonov.png', alt: 'Фасад дома Филимонов' },
+      { type: 'facade', src: '/images/filimonov.png', alt: 'Фасад дома Европейский квартал' },
       { type: 'plan', src: '/images/333.jpg', alt: 'Планировка дома' }
     ],
     file: '/projects/filimonov.pdf',
   },
   {
     id: 4,
-    title: 'Моронцов',
-    description: 'Дом 12х8м, общая площадь 89,6 кв.м., 2 спальни, 1 санузел',
+    title: 'Проект 12',
+    description: 'Общая площадь 100 кв.м.',
     images: [
-      { type: 'facade', src: '/images/moronchov.png', alt: 'Фасад дома Моронцов' },
+      { type: 'facade', src: '/images/moronchov.png', alt: 'Фасад дома Проект 12' },
       { type: 'plan', src: '/images/3333.jpg', alt: 'Планировка дома' }
     ],
     file: '/projects/moronchov.pdf',
@@ -55,7 +55,7 @@ const projects = [
   {
     id: 5,
     title: 'Ранчо',
-    description: 'Дом 15х12м, общая площадь 156,8 кв.м., 4 спальни, 2 санузла',
+    description: 'Общая площадь 96 кв.м.',
     images: [
       { type: 'facade', src: '/images/rancho.png', alt: 'Фасад дома Ранчо' },
       { type: 'plan', src: '/images/111.jpg', alt: 'Планировка 1 этажа' },
@@ -66,7 +66,7 @@ const projects = [
   {
     id: 6,
     title: 'Тихие Зори',
-    description: 'Дом 13х9м, общая площадь 118,2 кв.м., 3 спальни, 1 санузел',
+    description: 'Общая площадь 130 кв.м.',
     images: [
       { type: 'facade', src: '/images/zori.png', alt: 'Фасад дома Тихие Зори' },
       { type: 'plan', src: '/images/122.jpg', alt: 'Планировка дома' }
@@ -76,7 +76,7 @@ const projects = [
   {
     id: 7,
     title: 'Уютное гнездышко',
-    description: 'Дом 16х10м, общая площадь 168,4 кв.м., 4 спальни, 3 санузла',
+    description: 'Общая площадь 98 кв.м.',
     images: [
       { type: 'facade', src: '/images/gnezdo.png', alt: 'Фасад дома Уютное гнездышко' },
       { type: 'plan', src: '/images/3333.jpg', alt: 'Планировка дома' }
@@ -86,7 +86,7 @@ const projects = [
   {
     id: 8,
     title: 'Аура',
-    description: 'Дом 10х8м, общая площадь 78,6 кв.м., 2 спальни, 1 санузел',
+    description: 'Общая площадь 73 кв.м.',
     images: [
       { type: 'facade', src: '/images/aura.png', alt: 'Фасад дома Аура' },
       { type: 'plan', src: '/images/444.jpg', alt: 'Планировка 1 этажа' },
@@ -97,7 +97,7 @@ const projects = [
   {
     id: 9,
     title: 'Надежда',
-    description: 'Дом 18х12м, общая площадь 198,4 кв.м., 5 спален, 3 санузла',
+    description: 'Общая площадь 100 кв.м.',
     images: [
       { type: 'facade', src: '/images/nade.png', alt: 'Фасад дома Надежда' },
       { type: 'plan', src: '/images/666.jpg', alt: 'Планировка дома' }

@@ -40,6 +40,10 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
     }
   };
 
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleInputChange('name', e.target.value);
+  };
+
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value.replace(/\D/g, '');
     
@@ -57,6 +61,10 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
     }
     
     handleInputChange('phone', formattedValue);
+  };
+
+  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handleInputChange('message', e.target.value);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -149,7 +157,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                 name="name"
                 placeholder="Ваше имя"
                 value={formData.name}
-                onChange={handleInputChange}
+                onChange={handleNameChange}
                 className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 text-gray-800 placeholder-gray-500"
                 required
               />
@@ -161,7 +169,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                 name="phone"
                 placeholder="Ваш телефон"
                 value={formData.phone}
-                onChange={handleInputChange}
+                onChange={handlePhoneChange}
                 className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 text-gray-800 placeholder-gray-500"
                 required
               />
@@ -173,7 +181,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                 placeholder="Ваше сообщение"
                 rows={4}
                 value={formData.message}
-                onChange={handleInputChange}
+                onChange={handleMessageChange}
                 className="w-full px-4 py-3 rounded-lg bg-white border border-gray-200 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 text-gray-800 placeholder-gray-500 resize-none"
                 required
               />
@@ -201,7 +209,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
           </form>
           
           <p className="text-xs text-gray-500 mt-4 text-center">
-            Нажимая кнопку "Отправить сообщение", вы соглашаетесь с{' '}
+            Нажимая кнопку &ldquo;Отправить сообщение&rdquo;, вы соглашаетесь с{' '}
             <a href="#" className="underline hover:text-blue-600 transition-colors duration-300">
               Политикой конфиденциальности
             </a>

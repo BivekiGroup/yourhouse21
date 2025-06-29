@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Phone, Mail, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 import FadeInSection from './FadeInSection';
 
 const ContactSection = () => {
@@ -213,7 +213,7 @@ const ContactSection = () => {
               </form>
               
               <p className="text-xs text-gray-500 mt-4 text-center">
-                Нажимая кнопку "Отправить сообщение", вы соглашаетесь с{' '}
+                Нажимая кнопку &ldquo;Отправить сообщение&rdquo;, вы соглашаетесь с{' '}
                 <a href="#" className="underline hover:text-blue-600 transition-colors duration-300">
                   Политикой конфиденциальности
                 </a>

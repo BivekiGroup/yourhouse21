@@ -1,30 +1,38 @@
 'use client';
 
 import Image from 'next/image';
-import { Star } from 'lucide-react';
 import FadeInSection from './FadeInSection';
 
 const reviews = [
   {
     id: 1,
     name: 'Александр Петров',
+    position: 'Владелец дома',
     text: 'Очень доволен качеством строительства. Команда профессионалов, все работы выполнены в срок и с соблюдением всех норм.',
     rating: 5,
     image: '/images/Sasha.jpg',
+    project: 'Коттедж 150 м²',
+    date: 'Сентябрь 2024',
   },
   {
     id: 2,
     name: 'Елена Смирнова',
+    position: 'Владелица дома',
     text: 'Спасибо за отличную работу! Дом построен качественно, все пожелания были учтены. Рекомендую всем!',
     rating: 5,
     image: '/images/Elena.jpg',
+    project: 'Дом 120 м²',
+    date: 'Август 2024',
   },
   {
     id: 3,
     name: 'Дмитрий Иванов',
+    position: 'Владелец дома',
     text: 'Профессиональный подход к делу. Все этапы строительства контролировались, результат превзошел ожидания.',
     rating: 5,
     image: '/images/Dmitry.jpg',
+    project: 'Коттедж 180 м²',
+    date: 'Июль 2024',
   },
 ];
 
@@ -85,7 +93,7 @@ const ReviewsSection = () => {
                 </div>
                 
                 <blockquote className="text-gray-600 leading-relaxed italic">
-                  "{review.text}"
+                  &ldquo;{review.text}&rdquo;
                 </blockquote>
                 
                 <div className="mt-4 pt-4 border-t border-gray-200">

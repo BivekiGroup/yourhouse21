@@ -9,51 +9,51 @@ import { Droplets, Zap, Thermometer, Wrench } from 'lucide-react';
 const workExamples = [
   {
     id: 1,
-    title: 'Дом из газобетона',
-    description: 'Современный двухэтажный дом площадью 120 кв.м. с чистовой отделкой',
-    image: '/images/1q.jpeg',
-    area: '120 кв.м',
-    material: 'Газобетон',
+    title: 'Деревянный каркасный дом',
+    description: 'Г.Чебоксары п. Альгешево, 100 м2',
+    image: '/images/koroche.jpg',
+    area: '100 кв.м',
+    material: 'Каркасная технология',
   },
   {
     id: 2,
-    title: 'Каркасный дом',
-    description: 'Уютный одноэтажный дом с террасой, построен за 45 дней',
-    image: '/images/2q.jpeg',
-    area: '85 кв.м',
+    title: 'Деревянный каркасный дом',
+    description: 'г. Мариинский Посад, 80 м2',
+    image: '/images/koroche2.jpg',
+    area: '80 кв.м',
     material: 'Каркасная технология',
   },
   {
     id: 3,
-    title: 'Дом из керамических блоков',
-    description: 'Энергоэффективный дом с современными инженерными системами',
-    image: '/images/3q.jpeg',
-    area: '160 кв.м',
-    material: 'Керамические блоки',
+    title: 'Деревянный каркасный дом',
+    description: 'г. Цивильск, 80 м2',
+    image: '/images/koroche3.jpg',
+    area: '80 кв.м',
+    material: 'Каркасная технология',
   },
   {
     id: 4,
-    title: 'Дом из керамзитобетона',
-    description: 'Надежный и теплый дом для большой семьи',
-    image: '/images/4q.jpeg',
-    area: '140 кв.м',
-    material: 'Керамзитобетон',
+    title: 'Деревянный каркасный дом',
+    description: 'с. Комсомольское, 78 м2',
+    image: '/images/koroche4.jpg',
+    area: '78 кв.м',
+    material: 'Каркасная технология',
   },
   {
     id: 5,
-    title: 'Компактный дом',
-    description: 'Идеальное решение для молодой семьи с оптимальной планировкой',
-    image: '/images/5q.jpeg',
-    area: '95 кв.м',
-    material: 'Газобетон',
+    title: 'Деревянный каркасный дом',
+    description: 'Сосновка, 92 м2',
+    image: '/images/koroche5.jpg',
+    area: '92 кв.м',
+    material: 'Каркасная технология',
   },
   {
     id: 6,
-    title: 'Загородный дом',
-    description: 'Просторный дом с панорамными окнами и современным дизайном',
-    image: '/images/6q.jpeg',
-    area: '180 кв.м',
-    material: 'Кирпич',
+    title: 'Деревянный каркасный дом',
+    description: 'пос. Кугеси 110 м2',
+    image: '/images/koroche6.webp',
+    area: '110 кв.м',
+    material: 'Каркасная технология',
   },
 ];
 
@@ -63,28 +63,32 @@ const additionalServices = [
     icon: Droplets,
     title: 'Монтаж водоснабжения',
     description: 'Проектирование и установка систем водоснабжения с использованием качественных материалов',
-    features: ['Холодное и горячее водоснабжение', 'Установка счетчиков', 'Гарантия на работы']
+    features: ['Холодное и горячее водоснабжение', 'Установка счетчиков', 'Гарантия на работы'],
+    image: '/images/voda.jpeg'
   },
   {
     id: 2,
     icon: Wrench,
     title: 'Монтаж канализации',
     description: 'Полный комплекс работ по устройству канализационных систем',
-    features: ['Внутренняя канализация', 'Наружные сети', 'Септики и очистные сооружения']
+    features: ['Внутренняя канализация', 'Наружные сети', 'Септики и очистные сооружения'],
+    image: '/images/kanal.jpg'
   },
   {
     id: 3,
     icon: Zap,
     title: 'Монтаж электрики',
     description: 'Электромонтажные работы любой сложности с соблюдением всех норм безопасности',
-    features: ['Внутренняя проводка', 'Электрощиты', 'Освещение и розетки']
+    features: ['Внутренняя проводка', 'Электрощиты', 'Освещение и розетки'],
+    image: '/images/electro.jpg'
   },
   {
     id: 4,
     icon: Thermometer,
     title: 'Монтаж отопления',
     description: 'Установка современных систем отопления для комфортного проживания',
-    features: ['Радиаторное отопление', 'Теплые полы', 'Котельное оборудование']
+    features: ['Радиаторное отопление', 'Теплые полы', 'Котельное оборудование'],
+    image: '/images/otop.jpg'
   },
 ];
 
@@ -187,33 +191,50 @@ const WorkExamplesSection = () => {
               <FadeInSection 
                 key={service.id} 
                 as="div" 
-                className="group relative p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all duration-500 hover:scale-105 hover:-translate-y-2"
+                className="group relative rounded-2xl bg-white/80 backdrop-blur-md border border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 overflow-hidden"
                 delay={0.9 + (index * 0.1)}
               >
                 {/* Фон */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
-                <div className="relative z-10 text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-200 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <service.icon className="w-8 h-8 text-blue-600 group-hover:text-blue-700" />
+                <div className="relative z-10">
+                  {/* Изображение */}
+                  <div className="relative h-40 w-full overflow-hidden rounded-t-2xl">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    />
+                    {/* Градиент поверх изображения */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent"></div>
+                    
+                    {/* Иконка поверх изображения */}
+                    <div className="absolute top-4 left-4 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <service.icon className="w-6 h-6 text-white" />
+                    </div>
                   </div>
                   
-                  <h4 className="text-lg font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                    {service.title}
-                  </h4>
-                  
-                  <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                    {service.description}
-                  </p>
-                  
-                  <ul className="space-y-2">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-xs text-gray-500">
-                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Контент */}
+                  <div className="p-6 text-center">
+                    <h4 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                      {service.title}
+                    </h4>
+                    
+                    <p className="text-gray-600 text-base mb-6 leading-relaxed">
+                      {service.description}
+                    </p>
+                    
+                    <ul className="space-y-3">
+                      {service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center text-sm text-gray-500">
+                          <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
                 {/* Декоративный элемент */}
@@ -229,7 +250,7 @@ const WorkExamplesSection = () => {
             onClick={() => setIsCallbackModalOpen(true)}
             className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-300 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer hover:from-blue-500/30 hover:to-purple-500/30"
           >
-            <span className="text-gray-800 font-medium">Хотите увидеть свой дом в этой галерее?</span>
+            <span className="text-gray-800 font-medium">Помощь в подборе земельного участка, юридическое сопровождение</span>
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
           </button>
         </FadeInSection>

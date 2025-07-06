@@ -51,19 +51,36 @@ const Header = () => {
             <div className="hidden md:flex items-center space-x-6 flex-shrink-0">
               <div className="text-right">
                 <a 
-                  href="tel:+78352329226" 
+                  href="tel:+79530132423" 
                   className="flex items-center text-white hover:text-blue-400 transition-colors group text-lg font-semibold whitespace-nowrap"
                 >
-                  +7 8352 32 92 26
+                  +7 953 013 24 23
                 </a>
                 <div className="text-xs text-gray-300 mt-1">Пн - Вс с 8:00 до 20:00</div>
               </div>
               <button 
                 onClick={() => setIsModalOpen(true)}
-                className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-white/20 backdrop-blur-sm text-white px-8 py-3.5 rounded-lg hover:from-blue-500/30 hover:to-purple-500/30 hover:border-white/40 transition-all duration-300 hover:scale-105 text-base font-semibold flex-shrink-0 flex items-center space-x-2 group"
+                className="relative bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3.5 rounded-lg font-bold text-base flex-shrink-0 flex items-center space-x-2 group overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl animate-pulse hover:animate-none"
               >
+                {/* Светящийся фон */}
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Анимированная граница */}
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 opacity-75 blur-sm group-hover:blur-md transition-all duration-300"></div>
+                <div className="absolute inset-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg"></div>
+                
+                {/* Контент кнопки */}
+                <div className="relative z-10 flex items-center space-x-2">
                 <Phone className="w-5 h-5 group-hover:animate-bounce" />
-                <span>Оставить заявку</span>
+                  <span className="relative">
+                    Оставить заявку
+                    {/* Подчеркивание */}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 group-hover:w-full transition-all duration-300"></span>
+                  </span>
+                </div>
+                
+                {/* Блик */}
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </button>
             </div>
 

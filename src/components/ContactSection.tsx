@@ -88,9 +88,12 @@ const ContactSection = () => {
                   <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover/item:text-blue-600 transition-colors duration-300">
                     Телефон
                   </h3>
-                  <span className="text-gray-600 text-lg">
-                    будет другой
-                  </span>
+                  <a 
+                    href="tel:+79530132423" 
+                    className="text-gray-600 text-lg hover:text-blue-600 hover:bg-blue-50 px-2 py-1 rounded-lg transition-all duration-300 cursor-pointer"
+                  >
+                    7 953 013 24 23
+                  </a>
                 </div>
               </div>
 

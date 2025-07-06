@@ -88,12 +88,12 @@ const AboutSection = () => {
                 {features.map((feature, index) => (
                   <FadeInSection key={index} delay={0.3 + index * 0.1}>
                     <div className="flex items-start space-x-4 p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 hover:bg-white/90 hover:shadow-lg transition-all duration-300 group">
-                      <div className="text-2xl group-hover:scale-110 transition-transform duration-300">
+                      <div className="text-3xl group-hover:scale-110 transition-transform duration-300">
                         {feature.icon}
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-800 mb-1">{feature.title}</h4>
-                        <p className="text-gray-600 text-lg">{feature.description}</p>
+                        <h4 className="font-bold text-gray-800 mb-2 text-xl">{feature.title}</h4>
+                        <p className="text-gray-600 text-xl leading-relaxed">{feature.description}</p>
                       </div>
                     </div>
                   </FadeInSection>
@@ -115,13 +115,13 @@ const AboutSection = () => {
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="relative z-10 text-center">
-                  <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                     {stat.icon}
                   </div>
-                  <div className="text-3xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-all duration-300 drop-shadow-lg">
+                  <div className="text-5xl font-bold text-gray-800 mb-4 group-hover:text-blue-600 transition-all duration-300 drop-shadow-lg">
                     {stat.number}
                   </div>
-                  <div className="text-gray-600 text-sm font-medium">
+                  <div className="text-gray-600 text-lg font-medium leading-relaxed">
                     {stat.label}
                   </div>
                 </div>
@@ -137,10 +137,53 @@ const AboutSection = () => {
         <FadeInSection as="div" delay={0.6} className="text-center mt-16">
           <button
             onClick={() => setIsContactModalOpen(true)}
-            className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-300 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer hover:from-blue-500/30 hover:to-purple-500/30"
+            className="group relative overflow-hidden rounded-2xl hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-3xl"
           >
-            <span className="text-gray-800 font-medium">Готовы начать строительство?</span>
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+            {/* Фоновое изображение */}
+            <div className="absolute inset-0">
+              <Image
+                src="/images/4.1.png"
+                alt="Строительство дома"
+                fill
+                className="object-cover"
+              />
+            </div>
+            
+            {/* Анимированный блик */}
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+            
+            {/* Контент кнопки */}
+            <div className="relative z-10 px-8 py-6 rounded-2xl backdrop-blur-sm">
+              <div className="flex items-center justify-center space-x-4">
+                {/* Иконка дома */}
+                <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
+                  </svg>
+                </div>
+                
+                {/* Текст */}
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-yellow-200 transition-colors duration-300 drop-shadow-lg">
+                    Готовы начать строительство?
+                  </h3>
+                  <p className="text-white/90 text-sm group-hover:text-white transition-colors duration-300 drop-shadow-md">
+                    Получите бесплатную консультацию прямо сейчас
+                  </p>
+                </div>
+                
+                {/* Стрелка */}
+                <div className="flex-shrink-0 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform duration-300">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+              
+              {/* Декоративные элементы */}
+              <div className="absolute top-2 right-2 w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+              <div className="absolute bottom-2 left-2 w-1 h-1 bg-white/60 rounded-full"></div>
+            </div>
           </button>
         </FadeInSection>
       </div>

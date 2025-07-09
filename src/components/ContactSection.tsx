@@ -52,12 +52,25 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contacts" className="relative py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
-      {/* Статичный фон */}
+    <section id="contacts" className="relative py-20 bg-gradient-to-r from-slate-50 via-white to-blue-50 overflow-hidden">
+      {/* Коммуникационный фон */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500 rounded-full blur-3xl opacity-20"></div>
+        {/* Связи и соединения */}
+        <div className="absolute top-16 left-1/4 w-12 h-12 border-2 border-dashed border-blue-400 rounded-full opacity-25"></div>
+        <div className="absolute bottom-24 right-1/4 w-8 h-8 border-2 border-dashed border-indigo-400 rounded-full opacity-30"></div>
+        
+        {/* Сигналы */}
+        <div className="absolute top-1/3 left-16 w-6 h-1 bg-blue-400 opacity-35"></div>
+        <div className="absolute top-1/3 left-24 w-4 h-1 bg-blue-300 opacity-30"></div>
+        <div className="absolute top-1/3 left-30 w-2 h-1 bg-blue-200 opacity-25"></div>
+        
+        <div className="absolute bottom-1/3 right-16 w-6 h-1 bg-indigo-400 opacity-35"></div>
+        <div className="absolute bottom-1/3 right-24 w-4 h-1 bg-indigo-300 opacity-30"></div>
+        <div className="absolute bottom-1/3 right-30 w-2 h-1 bg-indigo-200 opacity-25"></div>
+        
+        {/* Углы карты */}
+        <div className="absolute top-8 right-8 w-16 h-16 border-2 border-blue-300 opacity-20 transform rotate-12"></div>
+        <div className="absolute bottom-8 left-8 w-12 h-12 border-2 border-cyan-300 opacity-25 transform -rotate-12"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

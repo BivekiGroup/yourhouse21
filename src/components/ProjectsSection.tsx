@@ -246,12 +246,21 @@ const ProjectsSection = ({ onCatalogClick }: ProjectsSectionProps) => {
   const visibleProjects = projects.slice(startIndex, startIndex + itemsPerView);
 
   return (
-    <section id="projects" className="relative py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
-      {/* Статичный фон */}
+    <section id="projects" className="relative py-20 bg-gradient-to-tr from-slate-50 via-white to-blue-50 overflow-hidden">
+      {/* Архитектурный фон */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500 rounded-full blur-3xl opacity-20"></div>
+        {/* Квадраты как окна */}
+        <div className="absolute top-16 left-16 w-20 h-20 border-2 border-blue-400 opacity-25"></div>
+        <div className="absolute top-32 right-24 w-16 h-16 border-2 border-indigo-400 opacity-30"></div>
+        <div className="absolute bottom-24 left-1/3 w-12 h-12 border-2 border-cyan-400 opacity-35"></div>
+        
+        {/* Ромбы */}
+        <div className="absolute top-1/3 left-1/4 w-14 h-14 bg-blue-300 transform rotate-45 opacity-20"></div>
+        <div className="absolute bottom-1/4 right-1/3 w-10 h-10 bg-indigo-400 transform rotate-45 opacity-25"></div>
+        
+        {/* Сетка */}
+        <div className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-blue-200 to-transparent opacity-30"></div>
+        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-200 to-transparent opacity-25"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">

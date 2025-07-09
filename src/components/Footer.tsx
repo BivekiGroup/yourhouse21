@@ -46,7 +46,11 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-4">Контакты</h4>
             <ul className="space-y-2 text-gray-400">
-              <li>+7 (900) 123-45-67</li>
+              <li>
+                <a href="tel:+79530132423" className="hover:text-white transition-colors">
+                  +7 953 013 24 23
+                </a>
+              </li>
               <li>info@vashdom.ru</li>
               <li>
                 г. Чебоксары,<br />

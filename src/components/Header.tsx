@@ -39,8 +39,8 @@ const Header = () => {
               <Link href="#projects" className="text-white hover:text-blue-400 transition-colors text-lg font-medium py-2 px-3 rounded-lg hover:bg-white/10">
                 Каталог домов
               </Link>
-              <Link href="#reviews" className="text-white hover:text-blue-400 transition-colors text-lg font-medium py-2 px-3 rounded-lg hover:bg-white/10">
-                Отзывы
+              <Link href="#additional-services" className="text-white hover:text-blue-400 transition-colors text-lg font-medium py-2 px-3 rounded-lg hover:bg-white/10">
+                Доп услуги
               </Link>
               <Link href="#contacts" className="text-white hover:text-blue-400 transition-colors text-lg font-medium py-2 px-3 rounded-lg hover:bg-white/10">
                 Контакты

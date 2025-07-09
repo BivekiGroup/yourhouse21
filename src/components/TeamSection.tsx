@@ -96,12 +96,22 @@ const WorkExamplesSection = () => {
   const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
 
   return (
-    <section className="relative py-20 bg-gradient-to-br from-gray-5 via-white to-gray-100 overflow-hidden">
-      {/* Статичный фон */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500 rounded-full blur-3xl opacity-20"></div>
+    <section className="relative py-20 bg-gradient-to-tl from-indigo-50 via-white to-blue-50 overflow-hidden">
+      {/* Технический фон */}
+      <div className="absolute inset-0 opacity-25">
+        {/* Инструменты стилизованные */}
+        <div className="absolute top-12 left-12 w-6 h-6 border-2 border-blue-400 transform rotate-45 opacity-30"></div>
+        <div className="absolute top-1/4 right-16 w-8 h-2 bg-indigo-400 rounded opacity-35"></div>
+        <div className="absolute bottom-20 left-1/5 w-2 h-8 bg-cyan-400 rounded opacity-40"></div>
+        
+        {/* Гайки и болты */}
+        <div className="absolute top-1/3 left-1/3 w-4 h-4 border border-blue-500 rounded-full opacity-25"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-3 h-3 bg-indigo-500 rounded-sm opacity-30"></div>
+        
+        {/* Технические линии */}
+        <div className="absolute top-0 left-1/4 w-px h-1/2 bg-gradient-to-b from-blue-300 to-transparent opacity-30"></div>
+        <div className="absolute bottom-0 right-1/3 w-px h-1/3 bg-gradient-to-t from-indigo-300 to-transparent opacity-25"></div>
+        <div className="absolute top-1/3 left-0 w-1/3 h-px bg-gradient-to-r from-cyan-300 to-transparent opacity-20"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -178,8 +188,9 @@ const WorkExamplesSection = () => {
         </div>
 
         {/* Дополнительные услуги */}
-        <FadeInSection as="div" className="mb-16" delay={0.8}>
-          <div className="text-center mb-12">
+        <div id="additional-services">
+          <FadeInSection as="div" className="mb-16" delay={0.8}>
+            <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-gray-800 bg-clip-text text-transparent mb-4">
               Дополнительные услуги
             </h3>
@@ -242,7 +253,8 @@ const WorkExamplesSection = () => {
               </FadeInSection>
             ))}
           </div>
-        </FadeInSection>
+          </FadeInSection>
+        </div>
 
         {/* Призыв к действию */}
         <FadeInSection as="div" delay={1.2} className="text-center mt-16">

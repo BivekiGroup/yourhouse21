@@ -7,7 +7,7 @@ import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import WorkExamplesSection from '@/components/TeamSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
-import Image from 'next/image';
+
 import HouseCalculatorModal from '@/components/HouseCalculatorModal';
 import CatalogRequestModal from '@/components/CatalogRequestModal';
 import ExcursionModal from '@/components/ExcursionModal';
@@ -82,18 +82,14 @@ export default function Home() {
       <ExcursionModal isOpen={isExcursionModalOpen} onClose={() => setIsExcursionModalOpen(false)} />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen pt-20 pb-16 flex items-center">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/stanica.png"
-            alt="Строительство домов"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/60"></div>
-        </div>
+      <section 
+        className="relative min-h-screen pt-20 pb-16 flex items-center bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/images/stanica.png')"
+        }}
+      >
+        {/* Background Overlay */}
+        <div className="absolute inset-0 bg-black/30 z-0"></div>
         
         {/* Content */}
         <div className="container mx-auto px-4 relative z-10">

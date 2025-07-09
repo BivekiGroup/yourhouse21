@@ -70,11 +70,11 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             Каталог домов
           </Link>
           <Link 
-            href="#reviews" 
+            href="#additional-services" 
             className="text-xl text-white hover:text-blue-400 transition-colors py-2"
             onClick={onClose}
           >
-            Отзывы
+            Доп услуги
           </Link>
           <Link 
             href="#contacts" 

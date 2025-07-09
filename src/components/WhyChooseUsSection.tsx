@@ -28,12 +28,22 @@ const features = [
 
 const WhyChooseUsSection = () => {
   return (
-    <section className="relative py-20 bg-gradient-to-br from-gray-5 via-white to-gray-100 overflow-hidden">
-      {/* Статичный фон */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500 rounded-full blur-3xl opacity-20"></div>
+    <section className="relative py-20 bg-gradient-to-bl from-blue-50 via-white to-slate-50 overflow-hidden">
+      {/* Минималистичный фон */}
+      <div className="absolute inset-0 opacity-35">
+        {/* Точки */}
+        <div className="absolute top-20 left-20 w-3 h-3 bg-blue-500 rounded-full opacity-40"></div>
+        <div className="absolute top-40 right-32 w-2 h-2 bg-indigo-500 rounded-full opacity-50"></div>
+        <div className="absolute bottom-32 left-1/4 w-4 h-4 bg-cyan-500 rounded-full opacity-30"></div>
+        <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-blue-400 rounded-full opacity-45"></div>
+        
+        {/* Тонкие линии */}
+        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent opacity-25"></div>
+        <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-300 to-transparent opacity-20"></div>
+        
+        {/* Угловые элементы */}
+        <div className="absolute top-0 right-0 w-32 h-32 border-t-2 border-r-2 border-blue-300 opacity-20"></div>
+        <div className="absolute bottom-0 left-0 w-24 h-24 border-b-2 border-l-2 border-indigo-300 opacity-25"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

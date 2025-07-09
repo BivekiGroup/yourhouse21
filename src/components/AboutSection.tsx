@@ -34,12 +34,22 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="relative py-20 bg-gradient-to-br from-gray-5 via-white to-gray-100 overflow-hidden">
-      {/* Статичный фон */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500 rounded-full blur-3xl opacity-20"></div>
+    <section id="about" className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
+      {/* Современный геометрический фон */}
+      <div className="absolute inset-0 opacity-40">
+        {/* Треугольники */}
+        <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500 transform rotate-45 opacity-20"></div>
+        <div className="absolute top-1/3 right-20 w-24 h-24 bg-indigo-600 transform rotate-12 opacity-30"></div>
+        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-cyan-500 transform -rotate-45 opacity-25"></div>
+        
+        {/* Круги с четкими краями */}
+        <div className="absolute top-1/4 right-1/3 w-16 h-16 bg-blue-400 rounded-full opacity-30"></div>
+        <div className="absolute bottom-1/3 right-10 w-12 h-12 bg-indigo-500 rounded-full opacity-40"></div>
+        <div className="absolute top-2/3 left-1/6 w-8 h-8 bg-cyan-400 rounded-full opacity-35"></div>
+        
+        {/* Линии */}
+        <div className="absolute top-0 left-1/3 w-1 h-full bg-gradient-to-b from-transparent via-blue-300 to-transparent opacity-20"></div>
+        <div className="absolute top-0 right-1/4 w-1 h-full bg-gradient-to-b from-transparent via-indigo-300 to-transparent opacity-15"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -58,7 +68,7 @@ const AboutSection = () => {
             <div className="relative h-[500px] w-full rounded-2xl overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent z-10"></div>
               <Image
-                src="/images/stroy.jpg"
+                src="/images/o_nac.jpg"
                 alt="О нашей компании"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -71,12 +81,12 @@ const AboutSection = () => {
 
           {/* Текстовый контент */}
           <FadeInSection as="div" delay={0.2}>
-            <div className="space-y-8">
-              <div className="space-y-6">
+            <div className="h-[500px] flex flex-col justify-center space-y-6">
+              <div className="space-y-4">
                 <h3 className="text-2xl font-bold text-gray-800">
                   Строим дома вашей мечты
                 </h3>
-                <p className="text-gray-600 leading-relaxed text-2xl">
+                <p className="text-gray-600 leading-relaxed text-xl">
                   Мы - команда профессионалов с более чем 10-летним опытом в строительстве 
                   современных домов. Наша миссия - создавать качественное и комфортное 
                   жилье для наших клиентов, используя передовые технологии и материалы.
@@ -84,16 +94,16 @@ const AboutSection = () => {
               </div>
 
               {/* Особенности */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {features.map((feature, index) => (
                   <FadeInSection key={index} delay={0.3 + index * 0.1}>
-                    <div className="flex items-start space-x-4 p-4 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 hover:bg-white/90 hover:shadow-lg transition-all duration-300 group">
-                      <div className="text-3xl group-hover:scale-110 transition-transform duration-300">
+                    <div className="flex items-start space-x-3 p-3 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-200 hover:bg-white/90 hover:shadow-lg transition-all duration-300 group">
+                      <div className="text-2xl group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                         {feature.icon}
                       </div>
                       <div>
-                        <h4 className="font-bold text-gray-800 mb-2 text-xl">{feature.title}</h4>
-                        <p className="text-gray-600 text-xl leading-relaxed">{feature.description}</p>
+                        <h4 className="font-bold text-gray-800 mb-1 text-lg">{feature.title}</h4>
+                        <p className="text-gray-600 text-base leading-snug">{feature.description}</p>
                       </div>
                     </div>
                   </FadeInSection>
@@ -137,23 +147,19 @@ const AboutSection = () => {
         <FadeInSection as="div" delay={0.6} className="text-center mt-16">
           <button
             onClick={() => setIsContactModalOpen(true)}
-            className="group relative overflow-hidden rounded-2xl hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-3xl"
+            className="group relative overflow-hidden rounded-2xl hover:scale-105 transition-all duration-500 shadow-2xl hover:shadow-3xl bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/images/4.1.png')"
+            }}
           >
-            {/* Фоновое изображение */}
-            <div className="absolute inset-0">
-              <Image
-                src="/images/4.1.png"
-                alt="Строительство дома"
-                fill
-                className="object-cover"
-              />
-            </div>
+            {/* Легкий оверлей для лучшей читаемости текста */}
+            <div className="absolute inset-0 bg-black/20 rounded-2xl"></div>
             
             {/* Анимированный блик */}
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
             
             {/* Контент кнопки */}
-            <div className="relative z-10 px-8 py-6 rounded-2xl backdrop-blur-sm">
+            <div className="relative z-10 px-8 py-6 rounded-2xl">
               <div className="flex items-center justify-center space-x-4">
                 {/* Иконка дома */}
                 <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

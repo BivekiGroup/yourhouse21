@@ -115,47 +115,43 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-2 sm:p-4">
       {/* Декоративный фон */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 bg-blue-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-56 sm:w-64 lg:w-80 h-56 sm:h-64 lg:h-80 bg-purple-500 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 w-48 sm:w-56 lg:w-64 h-48 sm:h-56 lg:h-64 bg-cyan-500 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative bg-gradient-to-br from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl w-full max-w-2xl mx-auto animate-fadeIn max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-gradient-to-br from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl w-full max-w-xs sm:max-w-md lg:max-w-2xl mx-auto animate-fadeIn max-h-[90vh] overflow-y-auto">
         <button
           onClick={closeModal}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white p-2 hover:bg-white/10 rounded-full transition-colors z-10"
+          className="absolute top-3 sm:top-4 right-3 sm:right-4 text-gray-400 hover:text-white p-1.5 sm:p-2 hover:bg-white/10 rounded-full transition-colors z-10"
           aria-label="Закрыть калькулятор"
         >
-          <X className="w-5 h-5 sm:w-6 sm:h-6" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
         </button>
-        
-        <div className="p-4 sm:p-6 md:p-8">
-          <div className="flex items-center justify-between mb-4 sm:mb-6">
-            <span className="text-gray-300 text-xs sm:text-sm">
-              {step < 5 ? 'Для расчета стоимости выберите один из вариантов' : 'Спасибо за заявку!'}
-            </span>
-            <span className="text-gray-300 text-xs sm:text-sm">{step}/5</span>
-          </div>
-          
-          <div className="w-full h-2 bg-white/10 rounded-full mb-6 sm:mb-8">
-            <div className="h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500" style={{ width: `${(step-1)*25}%` }} />
+
+        <div className="p-4 sm:p-6 lg:p-8">
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 sm:mb-4 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+              Калькулятор стоимости дома
+            </h1>
+            <div className="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
           </div>
 
           {step === 1 && (
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
-                Из какого материала хотите построить дом?
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+                Выберите материал
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
                 {materials.map((m) => (
                   <button
                     key={m.value}
                     type="button"
                     onClick={() => setMaterial(m.value)}
-                    className={`group relative p-4 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:scale-[1.02] ${
+                    className={`group relative p-3 sm:p-4 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:scale-[1.02] ${
                       material === m.value 
                         ? 'border-blue-500 shadow-lg shadow-blue-500/25' 
                         : 'border-white/20 hover:border-white/40'
@@ -166,22 +162,16 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
                       material === m.value ? 'opacity-100' : 'opacity-0'
                     }`}></div>
                     
-                    <div className="relative z-10 flex flex-col items-center">
-                      <div className="relative w-20 h-20 sm:w-24 sm:h-24 mb-3 sm:mb-4 rounded-xl overflow-hidden">
-                        <Image 
-                          src={m.img} 
-                          alt={m.label} 
-                          fill 
-                          className="object-cover"
-                          sizes="(max-width: 640px) 80px, (max-width: 1024px) 96px, 96px"
-                        />
+                    <div className="relative z-10 text-center">
+                      <div className="text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">
+                        {m.icon}
                       </div>
-                      <span className="text-sm sm:text-base font-medium text-white text-center group-hover:text-blue-300 transition-colors duration-300">
-                        {m.label}
-                      </span>
-                      {material === m.value && (
-                        <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 absolute top-2 right-2" />
-                      )}
+                      <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white mb-1 sm:mb-2 group-hover:text-blue-300 transition-colors duration-300">
+                        {m.name}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
+                        {m.description}
+                      </p>
                     </div>
                   </button>
                 ))}
@@ -191,12 +181,12 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
 
           {step === 2 && (
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
                 Какая площадь дома?
               </h2>
-              <div className="flex flex-col gap-3 sm:gap-4">
+              <div className="flex flex-col gap-2 sm:gap-3 lg:gap-4">
                 {areas.map((a) => (
-                  <label key={a} className="group relative cursor-pointer p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300">
+                  <label key={a} className="group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300">
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="relative z-10 flex items-center">
                       <input
@@ -205,9 +195,9 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
                         value={a}
                         checked={area === a}
                         onChange={() => setArea(a)}
-                        className="w-4 h-4 sm:w-5 sm:h-5 mr-3 accent-blue-500"
+                        className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-2 sm:mr-3 accent-blue-500"
                       />
-                      <span className="text-base sm:text-lg text-white group-hover:text-blue-300 transition-colors duration-300">{a}</span>
+                      <span className="text-sm sm:text-base lg:text-lg text-white group-hover:text-blue-300 transition-colors duration-300">{a}</span>
                     </div>
                   </label>
                 ))}
@@ -217,23 +207,31 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
 
           {step === 3 && (
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
-                Вариант отделки
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+                Дополнительные опции
               </h2>
-              <div className="flex flex-col gap-3 sm:gap-4">
-                {finishes.map((f) => (
-                  <label key={f} className="group relative cursor-pointer p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300">
+              <div className="space-y-2 sm:space-y-3 lg:space-y-4">
+                {options.map((option) => (
+                  <label key={option.value} className="group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300 flex items-center justify-between">
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative z-10 flex items-center">
+                    <div className="relative z-10 flex items-center flex-1">
                       <input
-                        type="radio"
-                        name="finish"
-                        value={f}
-                        checked={finish === f}
-                        onChange={() => setFinish(f)}
-                        className="w-4 h-4 sm:w-5 sm:h-5 mr-3 accent-blue-500"
+                        type="checkbox"
+                        checked={selectedOptions.includes(option.value)}
+                        onChange={() => handleOptionChange(option.value)}
+                        className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-2 sm:mr-3 accent-blue-500"
                       />
-                      <span className="text-base sm:text-lg text-white group-hover:text-blue-300 transition-colors duration-300">{f}</span>
+                      <div className="flex-1">
+                        <span className="text-sm sm:text-base lg:text-lg text-white group-hover:text-blue-300 transition-colors duration-300">
+                          {option.name}
+                        </span>
+                        <div className="text-xs sm:text-sm text-gray-300 mt-1">
+                          {option.description}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="relative z-10 text-xs sm:text-sm lg:text-base text-blue-300 font-semibold">
+                      +{option.price.toLocaleString()} ₽
                     </div>
                   </label>
                 ))}
@@ -242,86 +240,76 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
           )}
 
           {step === 4 && (
-            <div>
-              <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
-                Источник финансирования
-              </h2>
-              <div className="flex flex-col gap-3 sm:gap-4">
-                {finances.map((f) => (
-                  <label key={f} className="group relative cursor-pointer p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300">
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative z-10 flex items-center">
-                      <input
-                        type="radio"
-                        name="finance"
-                        value={f}
-                        checked={finance === f}
-                        onChange={() => setFinance(f)}
-                        className="w-4 h-4 sm:w-5 sm:h-5 mr-3 accent-blue-500"
-                      />
-                      <span className="text-base sm:text-lg text-white group-hover:text-blue-300 transition-colors duration-300">{f}</span>
+            <div className="text-center">
+              <div className="mb-6 sm:mb-8">
+                <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4">🏠</div>
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+                  Расчет готов!
+                </h2>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-400 mb-2 sm:mb-4">
+                  {totalPrice.toLocaleString()} ₽
+                </div>
+                <p className="text-sm sm:text-base text-gray-300">
+                  Итоговая стоимость строительства
+                </p>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 sm:p-6 mb-6 sm:mb-8 border border-white/20">
+                <h3 className="text-base sm:text-lg font-bold text-white mb-3 sm:mb-4">Детали расчета:</h3>
+                <div className="space-y-2 text-sm sm:text-base text-gray-300">
+                  <div className="flex justify-between">
+                    <span>Материал:</span>
+                    <span className="text-white">{materials.find(m => m.value === material)?.name}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Площадь:</span>
+                    <span className="text-white">{area}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Базовая стоимость:</span>
+                    <span className="text-white">{basePrice.toLocaleString()} ₽</span>
+                  </div>
+                  {selectedOptions.length > 0 && (
+                    <div className="flex justify-between">
+                      <span>Дополнительно:</span>
+                      <span className="text-white">+{optionsPrice.toLocaleString()} ₽</span>
                     </div>
-                  </label>
-                ))}
+                  )}
+                </div>
               </div>
             </div>
           )}
 
-          {step === 5 && (
-            <div className="flex flex-col items-center justify-center py-8 sm:py-12 animate-fadeIn">
-              <div className="bg-green-500/20 border border-green-500/30 backdrop-blur-sm rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 flex items-center shadow-lg w-full max-w-xl mx-auto">
-                <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 text-green-400 mr-3 sm:mr-4 flex-shrink-0" />
-                <span className="text-green-300 text-base sm:text-lg md:text-xl font-semibold leading-snug text-left">
-                  Благодарим за обращение в нашу компанию!<br className='hidden md:block' /> В течение 15 минут мы свяжемся с вами!
-                </span>
-              </div>
+          <div className="flex justify-between items-center mt-6 sm:mt-8">
+            {step > 1 && (
+              <button
+                onClick={handlePrevious}
+                className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-gray-600 to-gray-700 text-white hover:from-gray-700 hover:to-gray-800 transition-all duration-300 hover:scale-105 text-sm sm:text-base"
+              >
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span>Назад</span>
+              </button>
+            )}
+            
+            {step < 4 ? (
+              <button
+                onClick={handleNext}
+                disabled={!canProceed()}
+                className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-105 ml-auto text-sm sm:text-base"
+              >
+                <span>Далее</span>
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+            ) : (
               <button
                 onClick={closeModal}
-                className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 sm:px-8 py-3 rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300 text-base sm:text-lg font-semibold shadow-lg hover:scale-105"
+                className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transition-all duration-300 hover:scale-105 ml-auto text-sm sm:text-base"
               >
-                Закрыть
+                <span>Готово</span>
+                <Check className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
-            </div>
-          )}
-
-
-
-          {error && (
-            <div className="mt-4 sm:mt-6 bg-red-500/20 border border-red-500/30 text-red-300 text-center py-2 sm:py-3 px-3 sm:px-4 rounded-xl flex items-center justify-center min-h-[40px] sm:min-h-[48px] text-sm sm:text-base backdrop-blur-sm">
-              <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 shrink-0" />
-              <span className="block w-full break-words">{error}</span>
-            </div>
-          )}
-
-          {step < 5 && (
-            <div className="flex justify-between mt-6 sm:mt-8">
-              {step > 1 && (
-                <button
-                  onClick={handlePrev}
-                  className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 sm:px-6 py-2 rounded-full hover:bg-white/20 hover:scale-105 transition-all duration-300 text-sm sm:text-base font-medium"
-                >
-                  ← Назад
-                </button>
-              )}
-              {step < 4 && (
-                <button
-                  onClick={handleNext}
-                  className="ml-auto bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 sm:px-8 py-2 rounded-full hover:from-blue-600 hover:to-purple-600 hover:scale-105 transition-all duration-300 text-sm sm:text-base font-medium shadow-lg"
-                >
-                  Далее →
-                </button>
-              )}
-              {step === 4 && (
-                <button
-                  onClick={handleNext}
-                  disabled={isSubmitting}
-                  className="ml-auto bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 sm:px-8 py-2 rounded-full hover:from-blue-600 hover:to-purple-600 hover:scale-105 transition-all duration-300 text-sm sm:text-base font-medium shadow-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
-                >
-                  {isSubmitting ? 'Отправка...' : 'Рассчитать стоимость'}
-                </button>
-              )}
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>

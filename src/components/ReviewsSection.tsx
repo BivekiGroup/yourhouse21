@@ -75,6 +75,7 @@ const ReviewsSection = () => {
                       alt={review.name}
                       fill
                       className="object-cover"
+                      unoptimized={true}
                     />
                     {/* Декоративная рамка */}
                     <div className="absolute inset-0 rounded-full border border-gray-200 group-hover:border-blue-300 transition-colors duration-300"></div>

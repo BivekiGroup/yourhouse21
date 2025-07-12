@@ -144,6 +144,7 @@ const ProjectImageSlider = ({ project }: { project: typeof projects[0] }) => {
             ? 'object-contain p-4' 
             : 'object-cover'
         }`}
+        unoptimized={true}
       />
 
       {/* Навигация по изображениям */}

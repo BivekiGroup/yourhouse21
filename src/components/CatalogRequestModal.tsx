@@ -92,6 +92,7 @@ const CatalogRequestModal = ({ isOpen, onClose }: CatalogRequestModalProps) => {
                 width={320} 
                 height={120} 
                 className="object-contain rounded-lg shadow-md group-hover:scale-105 transition-transform duration-300" 
+                unoptimized={true}
               />
               {/* Декоративные элементы вокруг изображения */}
               <div className="absolute -top-2 -left-2 w-16 h-16 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-full blur-xl"></div>

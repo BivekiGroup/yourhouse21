@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Phone, Mail, MapPin } from 'lucide-react';
 import FadeInSection from './FadeInSection';
 
 const ContactSection = () => {

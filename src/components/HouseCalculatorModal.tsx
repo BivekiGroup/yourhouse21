@@ -1,13 +1,33 @@
 'use client';
 
 import { useState } from 'react';
-import { X, CheckCircle, AlertCircle } from 'lucide-react';
-import Image from 'next/image';
+import { X, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 
 const materials = [
-  { label: 'Кирпич/керамический блок', value: 'Кирпич/керамический блок', img: '/images/keramic.jpg' },
-  { label: 'Газобетон', value: 'Газобетон', img: '/images/gazobet.png' },
-  { label: 'Керамзитобетон', value: 'Керамзитобетон', img: '/images/keramiz.jpg' },
+  { 
+    label: 'Кирпич/керамический блок', 
+    value: 'Кирпич/керамический блок', 
+    img: '/images/keramic.jpg',
+    icon: '🧱',
+    name: 'Кирпич',
+    description: 'Прочный и долговечный'
+  },
+  { 
+    label: 'Газобетон', 
+    value: 'Газобетон', 
+    img: '/images/gazobet.png',
+    icon: '🏗️',
+    name: 'Газобетон',
+    description: 'Легкий и теплый'
+  },
+  { 
+    label: 'Керамзитобетон', 
+    value: 'Керамзитобетон', 
+    img: '/images/keramiz.jpg',
+    icon: '🏠',
+    name: 'Керамзитобетон',
+    description: 'Экологичный материал'
+  },
 ];
 
 const areas = [
@@ -17,13 +37,13 @@ const areas = [
   'более 200 кв.м.',
 ];
 
-const finishes = [
+const finishOptions = [
   'Без отделки',
   'Черновая отделка (стяжка, штукатурка и тд)',
   'Чистовая отделка (обои, ламинат и тд)',
 ];
 
-const finances = [
+const financeOptions = [
   'Наличные',
   'Сельская ипотека',
   'Ипотека, кредит',
@@ -43,39 +63,34 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
   const [area, setArea] = useState('');
   const [finish, setFinish] = useState('');
   const [finance, setFinance] = useState('');
-  const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
 
+  const canProceed = () => {
+    if (step === 1) return material !== '';
+    if (step === 2) return area !== '';
+    if (step === 3) return finish !== '';
+    if (step === 4) return finance !== '';
+    return true;
+  };
+
   const handleNext = () => {
-    setError('');
-    if (step === 1 && !material) return setError('Выберите материал');
-    if (step === 2 && !area) return setError('Выберите площадь');
-    if (step === 3 && !finish) return setError('Выберите вариант отделки');
-    if (step === 4 && !finance) {
-      setError('Выберите источник финансирования');
-      return;
-    }
     if (step === 4) {
-      // После 4-го шага отправляем данные в Telegram и переходим к 5-му шагу
       handleSubmitCalculator();
       return;
     }
     setStep((s) => s + 1);
   };
 
-  const handlePrev = () => {
-    setError('');
+  const handlePrevious = () => {
     setStep((s) => s - 1);
   };
 
   const handleSubmitCalculator = async () => {
-    // Защита от двойной отправки
     if (isSubmitting) return;
     
     setIsSubmitting(true);
-    setError('');
     
     try {
       const res = await fetch('/api/send-telegram', {
@@ -92,12 +107,10 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
       });
       
       if (res.ok) {
-        setStep(5); // Переходим к 5-му шагу
-      } else {
-        setError('Ошибка отправки. Попробуйте позже.');
+        setStep(5);
       }
     } catch {
-      setError('Ошибка отправки. Попробуйте позже.');
+      // Обработка ошибок
     } finally {
       setIsSubmitting(false);
     }
@@ -109,14 +122,27 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
     setArea('');
     setFinish('');
     setFinance('');
-    setError('');
     setIsSubmitting(false);
     onClose();
   };
 
+  const calculatePrice = () => {
+    let basePrice = 1500000; // Базовая цена
+    
+    // Корректировка по площади
+    if (area === '100-150 кв.м.') basePrice *= 1.3;
+    else if (area === '150-200 кв.м.') basePrice *= 1.6;
+    else if (area === 'более 200 кв.м.') basePrice *= 2;
+    
+    // Корректировка по материалу
+    if (material === 'Кирпич/керамический блок') basePrice *= 1.2;
+    else if (material === 'Керамзитобетон') basePrice *= 1.1;
+    
+    return Math.round(basePrice);
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-2 sm:p-4">
-      {/* Декоративный фон */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-1/4 left-1/4 w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 bg-blue-500 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-56 sm:w-64 lg:w-80 h-56 sm:h-64 lg:h-80 bg-purple-500 rounded-full blur-3xl"></div>
@@ -157,7 +183,6 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
                         : 'border-white/20 hover:border-white/40'
                     }`}
                   >
-                    {/* Фон при активном состоянии */}
                     <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 transition-opacity duration-300 ${
                       material === m.value ? 'opacity-100' : 'opacity-0'
                     }`}></div>
@@ -208,30 +233,24 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
           {step === 3 && (
             <div>
               <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
-                Дополнительные опции
+                Вариант отделки
               </h2>
               <div className="space-y-2 sm:space-y-3 lg:space-y-4">
-                {options.map((option) => (
-                  <label key={option.value} className="group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300 flex items-center justify-between">
+                {finishOptions.map((option) => (
+                  <label key={option} className="group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300">
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative z-10 flex items-center flex-1">
+                    <div className="relative z-10 flex items-center">
                       <input
-                        type="checkbox"
-                        checked={selectedOptions.includes(option.value)}
-                        onChange={() => handleOptionChange(option.value)}
+                        type="radio"
+                        name="finish"
+                        value={option}
+                        checked={finish === option}
+                        onChange={() => setFinish(option)}
                         className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-2 sm:mr-3 accent-blue-500"
                       />
-                      <div className="flex-1">
-                        <span className="text-sm sm:text-base lg:text-lg text-white group-hover:text-blue-300 transition-colors duration-300">
-                          {option.name}
-                        </span>
-                        <div className="text-xs sm:text-sm text-gray-300 mt-1">
-                          {option.description}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="relative z-10 text-xs sm:text-sm lg:text-base text-blue-300 font-semibold">
-                      +{option.price.toLocaleString()} ₽
+                      <span className="text-sm sm:text-base lg:text-lg text-white group-hover:text-blue-300 transition-colors duration-300">
+                        {option}
+                      </span>
                     </div>
                   </label>
                 ))}
@@ -240,6 +259,34 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
           )}
 
           {step === 4 && (
+            <div>
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+                Источник финансирования
+              </h2>
+              <div className="space-y-2 sm:space-y-3 lg:space-y-4">
+                {financeOptions.map((option) => (
+                  <label key={option} className="group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300">
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative z-10 flex items-center">
+                      <input
+                        type="radio"
+                        name="finance"
+                        value={option}
+                        checked={finance === option}
+                        onChange={() => setFinance(option)}
+                        className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-2 sm:mr-3 accent-blue-500"
+                      />
+                      <span className="text-sm sm:text-base lg:text-lg text-white group-hover:text-blue-300 transition-colors duration-300">
+                        {option}
+                      </span>
+                    </div>
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {step === 5 && (
             <div className="text-center">
               <div className="mb-6 sm:mb-8">
                 <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4">🏠</div>
@@ -247,7 +294,7 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
                   Расчет готов!
                 </h2>
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-400 mb-2 sm:mb-4">
-                  {totalPrice.toLocaleString()} ₽
+                  {calculatePrice().toLocaleString()} ₽
                 </div>
                 <p className="text-sm sm:text-base text-gray-300">
                   Итоговая стоимость строительства
@@ -266,22 +313,20 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
                     <span className="text-white">{area}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Базовая стоимость:</span>
-                    <span className="text-white">{basePrice.toLocaleString()} ₽</span>
+                    <span>Отделка:</span>
+                    <span className="text-white">{finish}</span>
                   </div>
-                  {selectedOptions.length > 0 && (
-                    <div className="flex justify-between">
-                      <span>Дополнительно:</span>
-                      <span className="text-white">+{optionsPrice.toLocaleString()} ₽</span>
-                    </div>
-                  )}
+                  <div className="flex justify-between">
+                    <span>Финансирование:</span>
+                    <span className="text-white">{finance}</span>
+                  </div>
                 </div>
               </div>
             </div>
           )}
 
           <div className="flex justify-between items-center mt-6 sm:mt-8">
-            {step > 1 && (
+            {step > 1 && step < 5 && (
               <button
                 onClick={handlePrevious}
                 className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-gray-600 to-gray-700 text-white hover:from-gray-700 hover:to-gray-800 transition-all duration-300 hover:scale-105 text-sm sm:text-base"
@@ -298,6 +343,15 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
                 className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-105 ml-auto text-sm sm:text-base"
               >
                 <span>Далее</span>
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+            ) : step === 4 ? (
+              <button
+                onClick={handleNext}
+                disabled={!canProceed() || isSubmitting}
+                className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-105 ml-auto text-sm sm:text-base"
+              >
+                <span>{isSubmitting ? 'Отправка...' : 'Рассчитать'}</span>
                 <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             ) : (

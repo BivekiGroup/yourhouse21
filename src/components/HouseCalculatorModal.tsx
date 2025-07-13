@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { X, CheckCircle, AlertCircle } from 'lucide-react';
-import Image from 'next/image';
+import { X, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 
 const materials = [
   { label: 'Кирпич/керамический блок', value: 'Кирпич/керамический блок', img: '/images/keramic.jpg' },
@@ -15,19 +14,6 @@ const areas = [
   '100-150 кв.м.',
   '150-200 кв.м.',
   'более 200 кв.м.',
-];
-
-const finishes = [
-  'Без отделки',
-  'Черновая отделка (стяжка, штукатурка и тд)',
-  'Чистовая отделка (обои, ламинат и тд)',
-];
-
-const finances = [
-  'Наличные',
-  'Сельская ипотека',
-  'Ипотека, кредит',
-  'Свой вариант',
 ];
 
 interface HouseCalculatorModalProps {
@@ -43,22 +29,17 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
   const [area, setArea] = useState('');
   const [finish, setFinish] = useState('');
   const [finance, setFinance] = useState('');
-  const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
 
   const handleNext = () => {
-    setError('');
-    if (step === 1 && !material) return setError('Выберите материал');
-    if (step === 2 && !area) return setError('Выберите площадь');
-    if (step === 3 && !finish) return setError('Выберите вариант отделки');
-    if (step === 4 && !finance) {
-      setError('Выберите источник финансирования');
-      return;
-    }
+    if (step === 1 && !material) return;
+    if (step === 2 && !area) return;
+    if (step === 3 && !finish) return;
+    if (step === 4 && !finance) return;
+    
     if (step === 4) {
-      // После 4-го шага отправляем данные в Telegram и переходим к 5-му шагу
       handleSubmitCalculator();
       return;
     }
@@ -66,16 +47,13 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
   };
 
   const handlePrev = () => {
-    setError('');
     setStep((s) => s - 1);
   };
 
   const handleSubmitCalculator = async () => {
-    // Защита от двойной отправки
     if (isSubmitting) return;
     
     setIsSubmitting(true);
-    setError('');
     
     try {
       const res = await fetch('/api/send-telegram', {
@@ -92,12 +70,10 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
       });
       
       if (res.ok) {
-        setStep(5); // Переходим к 5-му шагу
-      } else {
-        setError('Ошибка отправки. Попробуйте позже.');
+        setStep(5);
       }
     } catch {
-      setError('Ошибка отправки. Попробуйте позже.');
+      // Обработка ошибки
     } finally {
       setIsSubmitting(false);
     }
@@ -109,7 +85,6 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
     setArea('');
     setFinish('');
     setFinance('');
-    setError('');
     setIsSubmitting(false);
     onClose();
   };
@@ -157,21 +132,14 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
                         : 'border-white/20 hover:border-white/40'
                     }`}
                   >
-                    {/* Фон при активном состоянии */}
                     <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 transition-opacity duration-300 ${
                       material === m.value ? 'opacity-100' : 'opacity-0'
                     }`}></div>
                     
                     <div className="relative z-10 text-center">
-                      <div className="text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">
-                        {m.icon}
-                      </div>
                       <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white mb-1 sm:mb-2 group-hover:text-blue-300 transition-colors duration-300">
-                        {m.name}
+                        {m.label}
                       </h3>
-                      <p className="text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
-                        {m.description}
-                      </p>
                     </div>
                   </button>
                 ))}
@@ -208,30 +176,22 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
           {step === 3 && (
             <div>
               <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
-                Дополнительные опции
+                Выберите тип отделки
               </h2>
-              <div className="space-y-2 sm:space-y-3 lg:space-y-4">
-                {options.map((option) => (
-                  <label key={option.value} className="group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300 flex items-center justify-between">
+              <div className="flex flex-col gap-2 sm:gap-3 lg:gap-4">
+                {['Без отделки', 'Черновая отделка', 'Чистовая отделка'].map((f) => (
+                  <label key={f} className="group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300">
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative z-10 flex items-center flex-1">
+                    <div className="relative z-10 flex items-center">
                       <input
-                        type="checkbox"
-                        checked={selectedOptions.includes(option.value)}
-                        onChange={() => handleOptionChange(option.value)}
+                        type="radio"
+                        name="finish"
+                        value={f}
+                        checked={finish === f}
+                        onChange={() => setFinish(f)}
                         className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-2 sm:mr-3 accent-blue-500"
                       />
-                      <div className="flex-1">
-                        <span className="text-sm sm:text-base lg:text-lg text-white group-hover:text-blue-300 transition-colors duration-300">
-                          {option.name}
-                        </span>
-                        <div className="text-xs sm:text-sm text-gray-300 mt-1">
-                          {option.description}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="relative z-10 text-xs sm:text-sm lg:text-base text-blue-300 font-semibold">
-                      +{option.price.toLocaleString()} ₽
+                      <span className="text-sm sm:text-base lg:text-lg text-white group-hover:text-blue-300 transition-colors duration-300">{f}</span>
                     </div>
                   </label>
                 ))}
@@ -240,50 +200,49 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
           )}
 
           {step === 4 && (
+            <div>
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+                Источник финансирования
+              </h2>
+              <div className="flex flex-col gap-2 sm:gap-3 lg:gap-4">
+                {['Наличные', 'Сельская ипотека', 'Ипотека, кредит', 'Свой вариант'].map((f) => (
+                  <label key={f} className="group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300">
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative z-10 flex items-center">
+                      <input
+                        type="radio"
+                        name="finance"
+                        value={f}
+                        checked={finance === f}
+                        onChange={() => setFinance(f)}
+                        className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-2 sm:mr-3 accent-blue-500"
+                      />
+                      <span className="text-sm sm:text-base lg:text-lg text-white group-hover:text-blue-300 transition-colors duration-300">{f}</span>
+                    </div>
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {step === 5 && (
             <div className="text-center">
               <div className="mb-6 sm:mb-8">
-                <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4">🏠</div>
+                <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4">✅</div>
                 <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
-                  Расчет готов!
+                  Спасибо за заявку!
                 </h2>
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-400 mb-2 sm:mb-4">
-                  {totalPrice.toLocaleString()} ₽
-                </div>
                 <p className="text-sm sm:text-base text-gray-300">
-                  Итоговая стоимость строительства
+                  Мы свяжемся с вами в ближайшее время
                 </p>
-              </div>
-              
-              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 sm:p-6 mb-6 sm:mb-8 border border-white/20">
-                <h3 className="text-base sm:text-lg font-bold text-white mb-3 sm:mb-4">Детали расчета:</h3>
-                <div className="space-y-2 text-sm sm:text-base text-gray-300">
-                  <div className="flex justify-between">
-                    <span>Материал:</span>
-                    <span className="text-white">{materials.find(m => m.value === material)?.name}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Площадь:</span>
-                    <span className="text-white">{area}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Базовая стоимость:</span>
-                    <span className="text-white">{basePrice.toLocaleString()} ₽</span>
-                  </div>
-                  {selectedOptions.length > 0 && (
-                    <div className="flex justify-between">
-                      <span>Дополнительно:</span>
-                      <span className="text-white">+{optionsPrice.toLocaleString()} ₽</span>
-                    </div>
-                  )}
-                </div>
               </div>
             </div>
           )}
 
           <div className="flex justify-between items-center mt-6 sm:mt-8">
-            {step > 1 && (
+            {step > 1 && step < 5 && (
               <button
-                onClick={handlePrevious}
+                onClick={handlePrev}
                 className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-gray-600 to-gray-700 text-white hover:from-gray-700 hover:to-gray-800 transition-all duration-300 hover:scale-105 text-sm sm:text-base"
               >
                 <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -291,21 +250,38 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
               </button>
             )}
             
-            {step < 4 ? (
+            {step < 4 && (
               <button
                 onClick={handleNext}
-                disabled={!canProceed()}
+                disabled={
+                  (step === 1 && !material) ||
+                  (step === 2 && !area) ||
+                  (step === 3 && !finish)
+                }
                 className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-105 ml-auto text-sm sm:text-base"
               >
                 <span>Далее</span>
                 <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
-            ) : (
+            )}
+            
+            {step === 4 && (
+              <button
+                onClick={handleNext}
+                disabled={!finance || isSubmitting}
+                className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-105 ml-auto text-sm sm:text-base"
+              >
+                <span>{isSubmitting ? 'Отправка...' : 'Отправить'}</span>
+                <Check className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+            )}
+            
+            {step === 5 && (
               <button
                 onClick={closeModal}
-                className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transition-all duration-300 hover:scale-105 ml-auto text-sm sm:text-base"
+                className="flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transition-all duration-300 hover:scale-105 mx-auto text-sm sm:text-base"
               >
-                <span>Готово</span>
+                <span>Закрыть</span>
                 <Check className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             )}

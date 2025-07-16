@@ -68,12 +68,11 @@ const AboutSection = () => {
             <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] w-full rounded-2xl overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent z-10"></div>
               <Image
-                src="/images/stryokab.webp?v=3&t=1234567890"
+                src="/images/stroy.jpg"
                 alt="Строительная бригада за работой"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                 priority
-                unoptimized={true}
               />
               {/* Декоративные элементы */}
               <div className="absolute -top-4 -left-4 w-16 sm:w-20 lg:w-24 h-16 sm:h-20 lg:h-24 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-full blur-xl"></div>

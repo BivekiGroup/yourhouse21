@@ -9,49 +9,49 @@ import { Droplets, Zap, Thermometer, Wrench } from 'lucide-react';
 const workExamples = [
   {
     id: 1,
-    title: 'Каркасный дом',
-    description: 'Г.Чебоксары п. Альгешево, 100 м2',
-    image: '/images/koroche.jpg',
+    title: 'Дом из керамзитобетона',
+    description: 'Московская область, г. Люберцы, дом из керамзит бетона',
+    image: '/images/dom1.jpeg',
     area: '100 кв.м',
-    material: 'Каркасная технология',
+    material: 'Керамзитобетон',
   },
   {
     id: 2,
-    title: 'Каркасный дом',
-    description: 'г. Мариинский Посад, 80 м2',
-    image: '/images/koroche2.jpg',
-    area: '80 кв.м',
-    material: 'Каркасная технология',
+    title: 'Дом из пенобетонных блоков',
+    description: 'г. Чебоксары, Альгешево, дом 75 м2 из пенобетонных блоков',
+    image: '/images/dom2.jpg',
+    area: '75 кв.м',
+    material: 'Пенобетонные блоки',
   },
   {
     id: 3,
-    title: 'Каркасный дом',
-    description: 'г. Цивильск, 80 м2',
-    image: '/images/koroche3.jpg',
-    area: '80 кв.м',
-    material: 'Каркасная технология',
+    title: 'Кирпичный дом',
+    description: 'г. Чебоксары, ул. Гражданская, дом 120 м2 из кирпича',
+    image: '/images/dom3.jpg',
+    area: '120 кв.м',
+    material: 'Кирпич',
   },
   {
     id: 4,
-    title: 'Каркасный дом',
-    description: 'с. Комсомольское, 78 м2',
-    image: '/images/koroche4.jpg',
-    area: '78 кв.м',
-    material: 'Каркасная технология',
+    title: 'Дом из керамзитбетонных блоков',
+    description: 'пос. Кугеси, дом 175 м2 из керамзитбетонных блоков',
+    image: '/images/dom4.jpg',
+    area: '175 кв.м',
+    material: 'Керамзитбетонные блоки',
   },
   {
     id: 5,
-    title: 'Каркасный дом',
-    description: 'Сосновка, 92 м2',
-    image: '/images/koroche5.jpg',
-    area: '92 кв.м',
-    material: 'Каркасная технология',
+    title: 'Дом из керамзитбетонных блоков',
+    description: 'г. Чебоксары, ул. Лунная, дом 110 м2 из керамзитбетонных блоков',
+    image: '/images/dom5.jpg',
+    area: '110 кв.м',
+    material: 'Керамзитбетонные блоки',
   },
   {
     id: 6,
-    title: 'Каркасный дом',
-    description: 'пос. Кугеси 110 м2',
-    image: '/images/koroche6.webp',
+    title: '2х этажный каркасный дом',
+    description: 'г. Чебоксары, Южный поселок, 2х этажный каркасный дом',
+    image: '/images/dom6.jpeg',
     area: '110 кв.м',
     material: 'Каркасная технология',
   },
@@ -118,7 +118,7 @@ const WorkExamplesSection = () => {
         {/* Заголовок секции */}
         <FadeInSection as="div" className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-gray-800 bg-clip-text text-transparent mb-4">
-            Примеры наших работ
+            Примеры работ
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
         </FadeInSection>

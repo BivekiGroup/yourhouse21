@@ -216,8 +216,14 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
               </h2>
               <div className="flex flex-col gap-2 sm:gap-3 lg:gap-4">
                 {areas.map((a) => (
-                  <label key={a} className="group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300">
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <label key={a} className={`group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border transition-all duration-300 hover:scale-[1.01] ${
+                    area === a 
+                      ? 'border-blue-500 shadow-lg shadow-blue-500/25' 
+                      : 'border-white/20 hover:border-white/40'
+                  }`}>
+                    <div className={`absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 transition-opacity duration-300 ${
+                      area === a ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    }`}></div>
                     <div className="relative z-10 flex items-center">
                       <input
                         type="radio"
@@ -240,10 +246,16 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
               <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
                 Вариант отделки
               </h2>
-              <div className="space-y-2 sm:space-y-3 lg:space-y-4">
+              <div className="flex flex-col gap-2 sm:gap-3 lg:gap-4">
                 {finishOptions.map((option) => (
-                  <label key={option} className="group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300">
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <label key={option} className={`group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border transition-all duration-300 hover:scale-[1.01] ${
+                    finish === option 
+                      ? 'border-blue-500 shadow-lg shadow-blue-500/25' 
+                      : 'border-white/20 hover:border-white/40'
+                  }`}>
+                    <div className={`absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 transition-opacity duration-300 ${
+                      finish === option ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    }`}></div>
                     <div className="relative z-10 flex items-center">
                       <input
                         type="radio"
@@ -268,10 +280,16 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
               <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
                 Источник финансирования
               </h2>
-              <div className="space-y-2 sm:space-y-3 lg:space-y-4">
+              <div className="flex flex-col gap-2 sm:gap-3 lg:gap-4">
                 {financeOptions.map((option) => (
-                  <label key={option} className="group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 hover:border-white/40 hover:scale-[1.01] transition-all duration-300">
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <label key={option} className={`group relative cursor-pointer p-3 sm:p-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border transition-all duration-300 hover:scale-[1.01] ${
+                    finance === option 
+                      ? 'border-blue-500 shadow-lg shadow-blue-500/25' 
+                      : 'border-white/20 hover:border-white/40'
+                  }`}>
+                    <div className={`absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 transition-opacity duration-300 ${
+                      finance === option ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    }`}></div>
                     <div className="relative z-10 flex items-center">
                       <input
                         type="radio"

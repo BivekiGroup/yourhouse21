@@ -47,12 +47,20 @@ const Header = () => {
             {/* Contact Info & CTA */}
             <div className="hidden md:flex items-center space-x-4 lg:space-x-6 flex-shrink-0">
               <div className="text-right">
-                <a 
-                  href="tel:+79530132423" 
-                  className="flex items-center text-white hover:text-blue-400 transition-colors group text-base lg:text-lg font-semibold whitespace-nowrap"
-                >
-                  +7 953 013 24 23
-                </a>
+                <div className="space-y-1">
+                  <a 
+                    href="tel:+79530132423" 
+                    className="block text-white hover:text-blue-400 transition-colors group text-xs lg:text-sm font-semibold whitespace-nowrap"
+                  >
+                    +7 953 013 24 23
+                  </a>
+                  <a 
+                    href="tel:+79530148606" 
+                    className="block text-white hover:text-blue-400 transition-colors group text-xs lg:text-sm font-semibold whitespace-nowrap"
+                  >
+                    +7 953 014 86 06
+                  </a>
+                </div>
                 <div className="text-xs text-gray-300 mt-1">Пн - Вс с 8:00 до 20:00</div>
               </div>
               <button 
@@ -81,13 +89,22 @@ const Header = () => {
               </button>
             </div>
 
-            <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="md:hidden text-white hover:text-gray-300 transition-colors p-2 hover:bg-white/10 rounded-lg"
-              aria-label="Открыть меню"
-            >
-              <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
+            {/* Кнопка для мобильных устройств */}
+            <div className="md:hidden flex items-center space-x-2">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-2 rounded-lg text-sm font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-300 hover:scale-105 shadow-lg"
+              >
+                Заказать звонок
+              </button>
+              <button
+                onClick={() => setIsMobileMenuOpen(true)}
+                className="text-white hover:text-gray-300 transition-colors p-2 hover:bg-white/10 rounded-lg"
+                aria-label="Открыть меню"
+              >
+                <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+            </div>
           </div>
         </div>
       </FadeInOnMount>
@@ -100,6 +117,7 @@ const Header = () => {
       <MobileMenu
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
+        onCallbackClick={() => setIsModalOpen(true)}
       />
     </>
   );

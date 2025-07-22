@@ -51,6 +51,11 @@ const Footer = () => {
                   +7 953 013 24 23
                 </a>
               </li>
+              <li>
+                <a href="tel:+79530148606" className="hover:text-white transition-colors">
+                  +7 953 014 86 06
+                </a>
+              </li>
               <li>info@vashdom.ru</li>
               <li>
                 г. Чебоксары,<br />

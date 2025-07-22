@@ -7,9 +7,10 @@ import { useEffect } from 'react';
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  onCallbackClick?: () => void;
 }
 
-const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
+const MobileMenu = ({ isOpen, onClose, onCallbackClick }: MobileMenuProps) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -34,8 +35,7 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                </svg>
              </div>
             <div className="text-white">
-              <div className="text-xl font-bold">SD</div>
-              <div className="text-sm font-semibold -mt-1">STROY</div>
+              <div className="text-xl font-bold">Ваш Дом</div>
             </div>
           </Link>
           <button
@@ -86,16 +86,27 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
         </nav>
 
         <div className="mt-auto pb-8">
-          <a 
-            href="tel:+78352329226" 
-            className="flex items-center text-white hover:text-blue-400 transition-colors mb-2 group"
-          >
-            <Phone className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-            <span className="text-lg font-semibold">+7 8352 32 92 26</span>
-          </a>
+          <div className="space-y-2 mb-4">
+            <a 
+              href="tel:+79530132423" 
+              className="flex items-center text-white hover:text-blue-400 transition-colors group"
+            >
+              <Phone className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              <span className="text-lg font-semibold">+7 953 013 24 23</span>
+            </a>
+            <a 
+              href="tel:+79530148606" 
+              className="flex items-center text-white hover:text-blue-400 transition-colors group ml-7"
+            >
+              <span className="text-lg font-semibold">+7 953 014 86 06</span>
+            </a>
+          </div>
           <div className="text-sm text-gray-300 mb-6">Пн - Вс с 8:00 до 20:00</div>
           <button 
-            onClick={onClose}
+            onClick={() => {
+              onCallbackClick?.();
+              onClose();
+            }}
             className="w-full bg-white text-gray-900 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors hover:shadow-lg font-semibold"
           >
             Оставить заявку

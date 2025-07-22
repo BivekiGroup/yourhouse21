@@ -100,10 +100,15 @@ const ContactSection = () => {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-gray-600 text-sm sm:text-base mb-1">Телефон</p>
-                    <a href="tel:+79530132423" className="text-lg sm:text-xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-300">
-                      +7 953 013 24 23
-                    </a>
+                    <p className="text-gray-600 text-sm sm:text-base mb-1">Телефоны</p>
+                    <div className="space-y-1">
+                      <a href="tel:+79530132423" className="block text-lg sm:text-xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-300">
+                        +7 953 013 24 23
+                      </a>
+                      <a href="tel:+79530148606" className="block text-lg sm:text-xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-300">
+                        +7 953 014 86 06
+                      </a>
+                    </div>
                   </div>
                 </div>
                 
@@ -115,9 +120,14 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="text-gray-600 text-sm sm:text-base mb-1">WhatsApp</p>
-                    <a href="https://wa.me/79530132423" className="text-lg sm:text-xl font-semibold text-gray-800 hover:text-green-600 transition-colors duration-300">
-                      +7 953 013 24 23
-                    </a>
+                    <div className="space-y-1">
+                      <a href="https://wa.me/79530132423" className="block text-lg sm:text-xl font-semibold text-gray-800 hover:text-green-600 transition-colors duration-300">
+                        +7 953 013 24 23
+                      </a>
+                      <a href="https://wa.me/79530148606" className="block text-lg sm:text-xl font-semibold text-gray-800 hover:text-green-600 transition-colors duration-300">
+                        +7 953 014 86 06
+                      </a>
+                    </div>
                   </div>
                 </div>
                 

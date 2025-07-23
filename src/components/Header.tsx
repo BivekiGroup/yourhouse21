@@ -4,12 +4,14 @@ import Link from 'next/link';
 import { Menu, Phone } from 'lucide-react';
 import { useState } from 'react';
 import CallbackModal from './CallbackModal';
+import HouseCalculatorModal from './HouseCalculatorModal';
 import MobileMenu from './MobileMenu';
 import FadeInOnMount from './FadeInOnMount';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
   return (
     <>
@@ -39,6 +41,12 @@ const Header = () => {
               <Link href="#additional-services" className="text-white hover:text-blue-400 transition-colors font-medium">
                 Услуги
               </Link>
+              <button
+                onClick={() => setIsCalculatorOpen(true)}
+                className="text-white hover:text-blue-400 transition-colors font-medium"
+              >
+                Калькулятор
+              </button>
               <Link href="#contact" className="text-white hover:text-blue-400 transition-colors font-medium">
                 Контакты
               </Link>
@@ -93,9 +101,12 @@ const Header = () => {
             <div className="md:hidden flex items-center space-x-2">
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-2 rounded-lg text-sm font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-300 hover:scale-105 shadow-lg"
+                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-2 rounded-lg text-xs font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-300 hover:scale-105 shadow-lg"
               >
-                Заказать звонок
+                <div className="text-center">
+                  <div>+7 953 013 24 23</div>
+                  <div>+7 953 014 86 06</div>
+                </div>
               </button>
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
@@ -118,6 +129,11 @@ const Header = () => {
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
         onCallbackClick={() => setIsModalOpen(true)}
+      />
+
+      <HouseCalculatorModal
+        isOpen={isCalculatorOpen}
+        onClose={() => setIsCalculatorOpen(false)}
       />
     </>
   );

@@ -132,7 +132,7 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
   };
 
   const calculatePrice = () => {
-    let basePrice = 1500000; // Базовая цена
+    let basePrice = 1500000 * 2.5; // Базовая цена увеличена в 2.5 раза
     
     // Корректировка по площади
     if (area === '100-150 кв.м.') basePrice *= 1.3;
@@ -317,7 +317,7 @@ const HouseCalculatorModal = ({ isOpen, onClose, userName = '', userPhone = '' }
                   Спасибо за заявку!
                 </h2>
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-400 mb-2 sm:mb-4">
-                  {calculatePrice().toLocaleString()} ₽
+                  от {calculatePrice().toLocaleString()} ₽
                 </div>
                 <p className="text-sm sm:text-base text-gray-300">
                   Мы свяжемся с вами в ближайшее время

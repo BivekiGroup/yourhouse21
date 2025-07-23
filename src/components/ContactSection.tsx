@@ -103,8 +103,8 @@ const ContactSection = () => {
                     <p className="text-gray-600 text-sm sm:text-base mb-1">Телефоны</p>
                     <div className="space-y-1">
                       <a href="tel:+79530132423" className="block text-lg sm:text-xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-300">
-                        +7 953 013 24 23
-                      </a>
+                      +7 953 013 24 23
+                    </a>
                       <a href="tel:+79530148606" className="block text-lg sm:text-xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-300">
                         +7 953 014 86 06
                       </a>
@@ -122,8 +122,8 @@ const ContactSection = () => {
                     <p className="text-gray-600 text-sm sm:text-base mb-1">WhatsApp</p>
                     <div className="space-y-1">
                       <a href="https://wa.me/79530132423" className="block text-lg sm:text-xl font-semibold text-gray-800 hover:text-green-600 transition-colors duration-300">
-                        +7 953 013 24 23
-                      </a>
+                      +7 953 013 24 23
+                    </a>
                       <a href="https://wa.me/79530148606" className="block text-lg sm:text-xl font-semibold text-gray-800 hover:text-green-600 transition-colors duration-300">
                         +7 953 014 86 06
                       </a>

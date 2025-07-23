@@ -87,11 +87,11 @@ const MobileMenu = ({ isOpen, onClose, onCallbackClick }: MobileMenuProps) => {
 
         <div className="mt-auto pb-8">
           <div className="space-y-2 mb-4">
-            <a 
+          <a 
               href="tel:+79530132423" 
               className="flex items-center text-white hover:text-blue-400 transition-colors group"
-            >
-              <Phone className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+          >
+            <Phone className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               <span className="text-lg font-semibold">+7 953 013 24 23</span>
             </a>
             <a 
@@ -99,7 +99,7 @@ const MobileMenu = ({ isOpen, onClose, onCallbackClick }: MobileMenuProps) => {
               className="flex items-center text-white hover:text-blue-400 transition-colors group ml-7"
             >
               <span className="text-lg font-semibold">+7 953 014 86 06</span>
-            </a>
+          </a>
           </div>
           <div className="text-sm text-gray-300 mb-6">Пн - Вс с 8:00 до 20:00</div>
           <button 

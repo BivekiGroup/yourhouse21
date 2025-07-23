@@ -97,7 +97,19 @@ export default function Home() {
             {/* Left Content */}
                          <FadeInSection as="div" className="flex-1 text-white text-center lg:text-left" delay={0.2}>
               
-                             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+              {/* Блок с локацией и Яндексом */}
+              <div className="flex items-center justify-center lg:justify-start mb-4 sm:mb-6">
+                <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
+                  <img 
+                    src="/images/un2.png" 
+                    alt="Геолокация"
+                    className="w-5 h-5 sm:w-6 sm:h-6 mr-2 object-contain"
+                  />
+                  <span className="text-white text-sm sm:text-base font-medium">В республике Чувашия</span>
+                </div>
+              </div>
+              
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                  СТРОИТЕЛЬСТВО КАМЕННЫХ<br />
                  И КАРКАСНЫХ ДОМОВ<br />
                  С ФИКСАЦИЕЙ ЦЕНЫ

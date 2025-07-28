@@ -97,15 +97,13 @@ export default function Home() {
             {/* Left Content */}
                          <FadeInSection as="div" className="flex-1 text-white text-center lg:text-left" delay={0.2}>
               
-              {/* Блок с локацией и Яндексом */}
-              <div className="flex items-center justify-center lg:justify-start mb-4 sm:mb-6">
-                <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
-                  <img 
-                    src="/images/un2.png" 
-                    alt="Геолокация"
-                    className="w-5 h-5 sm:w-6 sm:h-6 mr-2 object-contain"
-                  />
-                  <span className="text-white text-sm sm:text-base font-medium">В республике Чувашия</span>
+              {/* Блок с локацией */}
+              <div className="mb-6 sm:mb-8 text-center lg:text-left">
+                <div className="inline-flex items-center justify-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2.5 border border-white/30">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-white text-sm font-medium leading-none">В республике Чувашия</span>
                 </div>
               </div>
               

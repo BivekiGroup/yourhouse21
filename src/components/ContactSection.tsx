@@ -159,6 +159,20 @@ const ContactSection = () => {
                     </p>
                   </div>
                 </div>
+                
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="flex-shrink-0 w-10 sm:w-12 h-10 sm:h-12 bg-orange-500/20 rounded-full flex items-center justify-center group-hover:bg-orange-500/30 transition-colors duration-300">
+                    <svg className="w-5 sm:w-6 h-5 sm:h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-gray-600 text-sm sm:text-base mb-1">Email</p>
+                    <a href="mailto:Vashdom121@mail.ru" className="text-lg sm:text-xl font-semibold text-gray-800 hover:text-orange-600 transition-colors duration-300">
+                      Vashdom121@mail.ru
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 

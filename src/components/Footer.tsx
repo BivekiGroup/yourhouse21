@@ -56,7 +56,11 @@ const Footer = () => {
                   +7 953 014 86 06
                 </a>
               </li>
-              <li>info@vashdom.ru</li>
+              <li>
+                <a href="mailto:Vashdom121@mail.ru" className="hover:text-white transition-colors">
+                  Vashdom121@mail.ru
+                </a>
+              </li>
               <li>
                 г. Чебоксары,<br />
                 ул. Калинина, 107

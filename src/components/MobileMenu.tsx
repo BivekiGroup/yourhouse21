@@ -49,7 +49,7 @@ const MobileMenu = ({ isOpen, onClose, onCallbackClick }: MobileMenuProps) => {
 
         <nav className="flex-1 flex flex-col space-y-6">
           <Link 
-            href="#services" 
+            href="#additional-services" 
             className="text-xl text-white hover:text-blue-400 transition-colors py-2"
             onClick={onClose}
           >
@@ -101,7 +101,18 @@ const MobileMenu = ({ isOpen, onClose, onCallbackClick }: MobileMenuProps) => {
               <span className="text-lg font-semibold">+7 953 014 86 06</span>
           </a>
           </div>
-          <div className="text-sm text-gray-300 mb-6">Пн - Вс с 8:00 до 20:00</div>
+          <div className="text-sm text-gray-300 mb-4">Пн - Вс с 8:00 до 20:00</div>
+          <div className="mb-6">
+            <a 
+              href="mailto:Vashdom121@mail.ru" 
+              className="flex items-center text-white hover:text-blue-400 transition-colors group"
+            >
+              <svg className="w-5 h-5 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span className="text-sm">Vashdom121@mail.ru</span>
+            </a>
+          </div>
           <button 
             onClick={() => {
               onCallbackClick?.();

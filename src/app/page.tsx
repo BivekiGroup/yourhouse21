@@ -5,6 +5,7 @@ import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import WorkExamplesSection from '@/components/TeamSection';
+import BuilderServicesSection from '@/components/BuilderServicesSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
@@ -203,6 +204,7 @@ export default function Home() {
       <ProjectsSection onCatalogClick={() => setIsCatalogModalOpen(true)} />
       <WhyChooseUsSection />
       <WorkExamplesSection />
+      <BuilderServicesSection />
       <ContactSection />
       <Footer />
     </main>

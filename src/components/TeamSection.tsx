@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import FadeInSection from './FadeInSection';
 import CallbackModal from './CallbackModal';
-import { Droplets, Zap, Thermometer, Wrench } from 'lucide-react';
+import { Droplets, Zap, Thermometer, Wrench, Drill, Shield, Home, Cable } from 'lucide-react';
 
 const workExamples = [
   {
@@ -162,6 +162,38 @@ const additionalServices = [
     features: ['Радиаторное отопление', 'Теплые полы', 'Котельное оборудование'],
     image: '/images/otop.jpg'
   },
+  {
+    id: 5,
+    icon: Drill,
+    title: 'Бурение технологических отверстий',
+    description: 'в стене, фундаменте, перекрытии',
+    features: ['Создание отверстий для монтажа вентиляционной системы, под клапаны кондиционирования', 'Просверливание отверстий в фундаменте, чтобы сделать отдушины или подключиться к общественным коммуникациям', 'Сделаем технологические отверстия под отопление, канализацию, водопровод'],
+    image: '/images/drilling.jpg'
+  },
+  {
+    id: 6,
+    icon: Shield,
+    title: 'Гидроизоляция и теплоизоляция',
+    description: 'Комплексная защита конструкций',
+    features: ['Ванные, санузлы, фундаменты, подвалы', 'Теплоизоляция труб, перекрытий, фасадов', 'Пароизоляция и звукоизоляция перегородок'],
+    image: '/images/insulation.jpg'
+  },
+  {
+    id: 7,
+    icon: Home,
+    title: 'Умный дом и инженерная автоматика',
+    description: 'Современные технологии управления домом',
+    features: ['Датчики протечки, дым/CO, термостаты, удалённый доступ', 'Реле, сценарии, интеграция с щитами и котельной', 'Настройка уведомлений и журналов событий'],
+    image: '/images/smart-home.jpg'
+  },
+  {
+    id: 8,
+    icon: Cable,
+    title: 'Слаботочные системы',
+    description: 'Современные системы связи и безопасности',
+    features: ['Видеонаблюдение, домофоны, СКУД, интернет и Wi‑Fi', 'Слаботочные щиты, слаботочные стояки, структурированные СКС', 'Аудио/видео‑кабелирование, стойки и коммутация'],
+    image: '/images/low-current.jpg'
+  },
 ];
 
 const WorkExamplesSection = () => {
@@ -270,7 +302,7 @@ const WorkExamplesSection = () => {
             <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {additionalServices.map((service, index) => (
               <FadeInSection 
                 key={service.id} 
